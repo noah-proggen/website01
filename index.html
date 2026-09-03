@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Friseursalon My Style | Ihr Friseursalon</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <nav class="navbar" id="navbar">
+    <div class="container nav-inner">
+      <a href="#home" class="logo">
+        <span class="logo-mark">◆</span>
+        <span>Friseursalon My Style</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="nav-link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1V10Z" /></svg><span>Home</span></a></li>
+        <li><a href="#about" class="nav-link"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3" /><path d="M5 20a7 7 0 0 1 14 0" /></svg><span>Über uns</span></a></li>
+        <li><a href="#services" class="nav-link"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="6" cy="6" r="3" /><circle cx="6" cy="18" r="3" /><path d="m8.2 8.2 11.3 11.3M8.2 15.8 19.5 4.5" /></svg><span>Leistungen</span></a></li>
+        <li><a href="#gallery" class="nav-link"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="2" /><circle cx="8.5" cy="8.5" r="1.5" /><path d="m21 15-5-5L5 21" /></svg><span>Galerie</span></a></li>
+        <li><a href="#reviews" class="nav-link"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-2.9-5.6 2.9 1.1-6.2L3 9.6l6.2-.9L12 3Z" /></svg><span>Bewertungen</span></a></li>
+        <li><a href="#contact" class="nav-link"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2" /><path d="m3 7 9 6 9-6" /></svg><span>Kontakt</span></a></li>
+      </ul>
+      <div class="nav-right">
+        <button class="hamburger" id="hamburger" aria-label="Menu">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <section id="home" class="hero">
+    <div class="hero-bg"></div>
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="hero-tag reveal">✂️ Friseursalon My Style</span>
+        <h1 class="hero-title reveal delay-1">
+          Ihr Style, <span class="gradient-text">unser Handwerk</span>
+        </h1>
+        <p class="hero-sub reveal delay-2">
+          Moderne Haarschnitte, kreative Stylings und professionelle Pflege für Ihren perfekten Look.
+          Lassen Sie sich persönlich beraten und fühlen Sie sich bei uns rundum wohl.
+        </p>
+        <div class="hero-btns reveal delay-3">
+          <a href="#reviews" class="btn btn-primary">
+            Kundenstimmen ansehen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+          <a href="#contact" class="btn btn-ghost">Start a Project</a>
+        </div>
+        <div class="hero-socials reveal delay-4">
+          <a href="#" aria-label="Twitter" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"/></svg>
+          </a>
+          <a href="#" aria-label="GitHub" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="mailto:noahschallehn6@gmail.com" aria-label="Email" class="social-link">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-image reveal delay-2">
+        <div class="hero-card">
+          <div class="hero-avatar">
+            <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&amp;fit=crop&amp;w=900&amp;h=900&amp;q=85" alt="Moderner Innenraum von Friseursalon My Style" />
+            <img class="hero-detail hero-detail-top" src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&amp;fit=crop&amp;w=360&amp;h=260&amp;q=85" alt="Friseurin beim Styling" />
+            <img class="hero-detail hero-detail-bottom" src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&amp;fit=crop&amp;w=360&amp;h=260&amp;q=85" alt="Professionelles Haarstyling" />
+          </div>
+          <div class="float-card float-1">
+            <span>✂️</span>
+            <div>
+              <strong>Schneller Service</strong>
+              <small>Ihr neuer Style</small>
+            </div>
+          </div>
+          <div class="float-card float-2">
+            <span>★★★★★</span>
+            <div>
+              <strong>Sehr zufrieden</strong>
+              <small>4,8 von 5 Sternen</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Über uns</span>
+        <h2 class="section-title">Ihr Look, <span class="gradient-text">mit Liebe gemacht</span></h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <p>
+            Friseursalon My Style steht für individuelle Beratung, moderne Haarschnitte
+            und professionelle Stylings für Damen, Herren und Kinder.
+          </p>
+          <p>
+            Unser Team nimmt sich Zeit für Ihre Wünsche und findet gemeinsam mit Ihnen den
+            Look, der zu Ihrer Persönlichkeit passt.
+          </p>
+          <div class="about-stats">
+            <div class="stat">
+              <h3>4,8</h3>
+              <p>Sterne Bewertung</p>
+            </div>
+            <div class="stat">
+              <h3>31+</h3>
+              <p>Bewertungen</p>
+            </div>
+            <div class="stat">
+              <h3>100%</h3>
+              <p>Persönliche Beratung</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-img reveal">
+          <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?auto=format&amp;fit=crop&amp;w=800&amp;h=600&amp;q=85" alt="Unser Friseursalon" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Unsere Leistungen</span>
+        <h2 class="section-title">Schönes Haar, <span class="gradient-text">schöner Style</span></h2>
+        <p>Professionelle Leistungen, persönliche Beratung und ein Ergebnis, mit dem Sie sich wohlfühlen.</p>
+      </div>
+      <div class="reveal">
+        <div class="service-hero">
+          <div class="service-hero-icon">💻</div>
+          <h1 class="service-hero-title">Ihr neuer Lieblingslook</h1>
+          <p class="service-hero-text">
+            Ob klassischer Haarschnitt, modernes Styling oder eine komplette Veränderung:
+            Wir beraten Sie ehrlich, arbeiten sorgfältig und nehmen uns Zeit für ein Ergebnis,
+            das zu Ihnen passt.
+          </p>
+          <div class="service-hero-features">
+            <div class="shf-item">
+              <span class="shf-icon">✅</span>
+              <span>Damen- und Herrenschnitte</span>
+            </div>
+            <div class="shf-item">
+              <span class="shf-icon">✅</span>
+              <span>Individuelle Beratung</span>
+            </div>
+            <div class="shf-item">
+              <span class="shf-icon">✅</span>
+              <span>Waschen, Schneiden und Stylen</span>
+            </div>
+            <div class="shf-item">
+              <span class="shf-icon">✅</span>
+              <span>Farbe und Pflege</span>
+            </div>
+            <div class="shf-item">
+              <span class="shf-icon">✅</span>
+              <span>Kinderhaarschnitte</span>
+            </div>
+            <div class="shf-item">
+              <span class="shf-icon">✅</span>
+              <span>Faire Preise</span>
+            </div>
+          </div>
+          <div class="hero-btns service-hero-btns">
+            <a href="#contact" class="btn btn-primary">
+              Termin anfragen
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </a>
+            <a href="#reviews" class="btn btn-ghost">Bewertungen lesen</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="gallery" class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Unser Salon</span>
+        <h2 class="section-title">Inspiration für <span class="gradient-text">Ihren Style</span></h2>
+        <p>Generierte Beispielbilder als Vorgeschmack auf Salon, Styling und unsere Arbeit.</p>
+      </div>
+      <div class="gallery-grid">
+        <figure class="gallery-item gallery-item-large reveal">
+          <img src="https://images.unsplash.com/photo-1521590832167-7bcbfaa6381f?auto=format&amp;fit=crop&amp;w=900&amp;h=600&amp;q=85" alt="Moderner Salonbereich" />
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=85" alt="Professionelles Haarstyling" />
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=85" alt="Elegantes Ergebnis nach dem Styling" />
+        </figure>
+        <figure class="gallery-item gallery-item-wide reveal">
+          <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&amp;fit=crop&amp;w=900&amp;h=600&amp;q=85" alt="Professioneller Salonbereich mit Stylingplätzen" />
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1503951914875-452162b0f3f1?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=85" alt="Moderner Herrenhaarschnitt" />
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=85" alt="Ergebnis einer professionellen Haarpflege" />
+        </figure>
+        <figure class="gallery-item reveal">
+          <img src="https://images.unsplash.com/photo-1487412947147-5cebf100ffc2?auto=format&amp;fit=crop&amp;w=600&amp;h=800&amp;q=85" alt="Zufriedene Kundin mit neuem Hairstyle" />
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="reviews" class="section">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Kundenstimmen</span>
+        <h2 class="section-title">4,8 von 5 Sternen aus <span class="gradient-text">31 Bewertungen</span></h2>
+      </div>
+      <div class="reviews-grid">
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Super dort, bin immer sehr zufrieden. Danke Conny!“</p><strong>Karin Behnke</strong><small>vor 3 Monaten</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Sehr sympathisch, schönes Ambiente und die Haare sehen jedes Mal aus wie gewünscht.“</p><strong>Janin Louise</strong><small>vor einem Jahr</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Kompetenz, sehr freundlich und sehr korrekt.“</p><strong>Olaf Perner</strong><small>vor 2 Monaten</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Meine ganze Familie geht zu Conny seit Jahren. Heute war unser Kleiner das erste Mal und es hat super geklappt.“</p><strong>Judith Seidenschnur</strong><small>vor einem Jahr</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Freundlich, sympathisch und professionell, hier gehe ich gern hin.“</p><strong>benny janneck</strong><small>vor 2 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Tolle Beratung, tolle Frisur und das zu super fairen Preisen. Komme immer gerne wieder.“</p><strong>Daniela Ritzau</strong><small>vor 3 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Ich hatte extra gesagt, dass die Frisur nicht kürzer geschnitten werden soll. Die nachgewachsenen Haarspitzen wurden nachgeschnitten …“</p><strong>Biggy</strong><small>vor einem Jahr</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Ein wunderschönes Ambiente in diesem Salon. Meine Wünsche wurden mit Extravaganz erfüllt.“</p><strong>Elias Trautwein</strong><small>vor 3 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Der mit Abstand beste Friseur-Laden, den ich kenne. Hier wird noch von der Meisterin selbst geschnitten.“</p><strong>Tim Pro</strong><small>vor 2 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Conny ist immer gut drauf, erfüllt jeden Wunsch und ihre Preise sind fair.“</p><strong>Ed Kahlson</strong><small>vor 5 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Ich bin wie immer super zufrieden. Es ist für mich immer eine kleine Wohlfühlzeit.“</p><strong>Sabine Plüquett</strong><small>vor 2 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Professionelle Beratung ganz ohne Geldschneiderei und eine sehr gute Umsetzung. Ohne Abstriche zu empfehlen.“</p><strong>Carsten Koszior</strong><small>vor 3 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Bin sehr zufrieden.“</p><strong>Christine Lindemann</strong><small>vor 5 Monaten</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Sehr freundlicher Empfang.“</p><strong>Spockina</strong><small>vor 2 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Freundlich, höflich, aufgeräumt und sauber. Und man kann auch gut parken.“</p><strong>Wolfgang Köhn</strong><small>vor 3 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Auch meine Herzdame ist von dem Ergebnis angetan. Und sie ist nicht so leicht zu überzeugen.“</p><strong>Paule Baademeister</strong><small>vor 5 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Super Beratung und immer gute Laune. Tolle Chefin.“</p><strong>Kathrin Discher</strong><small>vor 4 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Bin rundum sehr zufrieden!“</p><strong>Dieter Leh</strong><small>vor 2 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Tolle Chefin, super Atmosphäre, großartige Arbeit!“</p><strong>Johnny Martini</strong><small>vor 7 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Nettes Personal. Gute Preise.“</p><strong>Holger Domhardt</strong><small>vor 2 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Sehr kompetente Friseurmeisterin.“</p><strong>Hartmut Fischer</strong><small>vor 4 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>„Wie immer, ganz toll dort.“</p><strong>Bulli PM</strong><small>vor 4 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>Weitere Kundenbewertung</p><strong>Holger Busche</strong><small>vor 2 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>Weitere Kundenbewertung</p><strong>Stefan Demmrich</strong><small>vor 2 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>Weitere Kundenbewertung</p><strong>Helga Helm</strong><small>vor 3 Jahren</small></article>
+        <article class="review reveal"><div class="review-stars">★★★★★</div><p>Weitere Kundenbewertung</p><strong>Martin Ellermann</strong><small>vor 3 Jahren</small></article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section section-alt">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="section-label">Kontakt</span>
+        <h2 class="section-title">Vereinbaren Sie Ihren <span class="gradient-text">nächsten Termin</span></h2>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-info reveal">
+          <div class="contact-item">
+            <div class="ci-icon">📧</div>
+            <div>
+              <h4>Email</h4>
+              <a href="mailto:noahschallehn6@gmail.com">noahschallehn6@gmail.com</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📞</div>
+            <div>
+              <h4>Phone</h4>
+              <a href="tel:+1234567890">+1 (234) 567-890</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">📍</div>
+            <div>
+              <h4>Standort</h4>
+              <a href="https://www.google.com/maps/place/Friseursalon+My+Style/@52.3434733,12.9863239,19.75z/data=!4m8!3m7!1s0x47a8f501c867059d:0x81a44e595f9a4cae!8m2!3d52.3434845!4d12.9861233!9m1!1b1!16s%2Fg%2F11g2wsx30z?entry=ttu" target="_blank" rel="noopener">Auf Google Maps ansehen</a>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="ci-icon">💬</div>
+            <div>
+              <h4>Availability</h4>
+              <p>Mon–Fri, 9am–6pm</p>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form reveal" id="contactForm"
+          action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+          <input type="hidden" name="subject" value="Neue Terminanfrage - Friseursalon My Style">
+          <input type="hidden" name="from_name" value="Friseursalon My Style - Kontaktformular">
+          <input type="checkbox" name="botcheck" style="display: none !important;">
+          <input type="hidden" name="reply_to" value="@email">
+          <div class="form-row">
+            <div class="field">
+              <label>Name</label>
+              <input type="text" name="name" placeholder="Ihr vollständiger Name" required />
+            </div>
+            <div class="field">
+              <label>E-Mail</label>
+              <input type="email" name="email" placeholder="ihre@email.de" required />
+            </div>
+          </div>
+          <div class="field">
+            <label>Wunschleistung</label>
+            <input type="text" name="subject" placeholder="Welche Leistung wünschen Sie?" required />
+          </div>
+          <div class="field">
+            <label>Nachricht</label>
+            <textarea name="message" rows="5" placeholder="Wann möchten Sie gerne kommen? Schreiben Sie uns Ihre Wünsche." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            Termin anfragen
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+          <p class="form-msg" id="formMsg">✅ Thanks! We'll get back to you within 24 hours.</p>
+        </form>
+      </div>
+      <div class="map-wrap reveal">
+        <iframe
+          src="https://www.google.com/maps?q=Friseursalon+My+Style+52.3434845,12.9861233&amp;output=embed"
+          title="Friseursalon My Style auf Google Maps"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <a href="#home" class="logo">
+          <span class="logo-mark">◆</span>
+          <span>Friseursalon My Style</span>
+        </a>
+        <p>Individuelle Styles, professionelle Pflege und persönliche Beratung.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h4>Links</h4>
+          <a href="#home">Home</a>
+          <a href="#about">Über uns</a>
+          <a href="#services">Leistungen</a>
+          <a href="#gallery">Galerie</a>
+          <a href="#reviews">Bewertungen</a>
+        </div>
+        <div class="footer-col">
+          <h4>Follow</h4>
+          <a href="#">Twitter</a>
+          <a href="#">GitHub</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">Dribbble</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© 2026 Friseursalon My Style. Ihr Style, unser Handwerk.</p>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="backTop" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

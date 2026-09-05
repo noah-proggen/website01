@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="FORME - zeitlose Essentials für jeden Tag.">
+  <title>FORME - Everyday essentials</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root{--paper:#f7f7f5;--acid:#d7263d;--muted:#737373;--line:rgba(23,23,23,.16)}
+    .kicker,h1 em,h2 em,.newsletter #message{color:#d7263d}
+    .site-header nav a:hover,footer a:hover{color:#d7263d}
+    .button,.filters button.active,.filters button:hover,.detail-options button.selected,.detail-options button:hover{background:#d7263d}
+    .button:hover{background:#a91d30}
+    .product-image{position:relative}
+    .product-badge{position:absolute;top:12px;left:12px;z-index:1;padding:7px 11px;border-radius:999px;color:#fff;background:#171717;font-size:.62rem;font-weight:700;letter-spacing:.08em}
+    .product-badge.sale-badge{background:#d7263d}
+  </style>
+  <style>
+    .product-detail{position:fixed;z-index:7;inset:50% auto auto 50%;display:grid;grid-template-columns:1fr 1fr;width:min(900px,calc(100% - 32px));max-height:calc(100vh - 32px);overflow:auto;background:var(--paper);box-shadow:0 20px 70px #0004;transform:translate(-50%,-50%) scale(.96);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}.product-detail.open{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:auto}.detail-image{min-height:500px;background:#ddd9d0}.detail-image img{width:100%;height:100%;display:block;object-fit:cover}.detail-content{position:relative;padding:48px}.detail-close{position:absolute;top:20px;right:22px;border:0;background:transparent;font-size:1.8rem}.detail-content h2{margin-bottom:12px;font-size:clamp(2.3rem,4vw,4rem)}.detail-category{margin:0 0 28px;color:var(--muted);font-size:.75rem;text-transform:uppercase}.detail-price{display:block;margin-bottom:30px}.detail-label{display:block;margin:22px 0 9px;font-size:.7rem;font-weight:700;text-transform:uppercase}.detail-options{display:flex;flex-wrap:wrap;gap:7px}.detail-options button{padding:9px 12px;border:1px solid var(--line);background:transparent;font-size:.72rem}.detail-options button.selected,.detail-options button:hover{color:var(--paper);background:var(--ink)}.detail-material{margin:28px 0;color:var(--muted);font-size:.78rem;line-height:1.5}.detail-quantity{display:flex;align-items:center;gap:12px}.detail-quantity input{width:55px;padding:10px;border:1px solid var(--line);background:transparent;text-align:center}.detail-add{width:100%;margin-top:28px}.detail-backdrop{position:fixed;z-index:6;inset:0;display:none;background:#17171799}.detail-backdrop.open{display:block}@media(max-width:650px){.product-detail{display:block;max-height:calc(100vh - 20px)}.detail-image{min-height:260px;max-height:38vh}.detail-content{padding:30px 24px 28px}}
+  </style>
+</head>
+<body>
+  <div class="announcement">Kostenloser Versand ab 80 EUR <span>·</span> 30 Tage Rückgaberecht</div>
+  <header class="site-header">
+    <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
+    <a class="logo" href="#top">FORME<span>®</span></a>
+    <form class="search-form" role="search">
+      <label class="sr-only" for="site-search">Produkte suchen</label>
+      <input id="site-search" type="search" placeholder="Suche" autocomplete="off">
+      <button type="submit" aria-label="Suche starten">⌕</button>
+    </form>
+    <nav aria-label="Hauptnavigation"><a href="#shop">Damen</a><a href="#shop">Herren</a><a href="#shop" data-nav-filter="Sale">Sale</a><a href="#shop" data-nav-filter="Neu">Neu</a></nav>
+    <div class="account-actions"><button class="account-button" id="account-button" type="button">Anmelden</button><button class="cart-button" aria-label="Warenkorb öffnen"><span class="cart-icon" aria-hidden="true"></span><span id="cart-count">0</span></button></div>
+  </header>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy"><p class="kicker">Collection 01 / 2026</p><h1>Wear your<br><em>everyday.</em></h1><p>Klare Formen. Starke Basics. Kleidung, die bleibt, wenn der Trend längst weiterzieht.</p><a class="button" href="#shop">Kollektion entdecken <span>↘</span></a></div>
+      <div class="hero-visual"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=85" alt="Model in moderner Kleidung"><span>FORME / 001</span><b>NEW<br>SEASON</b></div>
+    </section>
+    <div class="ticker"><span>BUILT FOR EVERYDAY</span><span>DESIGNED IN BERLIN</span><span>MADE TO LAST</span></div>
+    <section class="shop" id="shop"><div class="heading"><div><p class="kicker">The essentials</p><h2>Shop the edit</h2></div><p>Eine bewusst kuratierte Auswahl an Teilen für jeden Tag.</p></div><div class="filters"><button class="active" data-filter="Alle">Alle</button><button data-filter="T-Shirts">T-Shirts</button><button data-filter="Hosen">Hosen</button><button data-filter="Schuhe">Schuhe</button><button data-filter="Jacken">Jacken</button></div><div class="products" id="products"></div></section>
+    <section class="story" id="story"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=85" alt="Moderner Streetstyle"><div><p class="kicker">Our point of view</p><h2>Less noise.<br><em>More you.</em></h2><p>FORME ist eine unabhängige Modemarke für Menschen, die ihren eigenen Rhythmus tragen. Zeitlose Silhouetten mit Haltung, Komfort und einem Blick fürs Detail.</p><a class="text-link" href="#contact">Mehr über FORME →</a></div></section>
+    <section class="newsletter" id="contact"><p class="kicker">Stay in the loop</p><h2>Join the<br><em>inner circle.</em></h2><form id="newsletter"><input type="email" placeholder="Deine E-Mail-Adresse" required><button>Anmelden ↗</button></form><p id="message"></p></section>
+  </main>
+  <footer><a class="logo" href="#top">FORME<span>®</span></a><span>© 2026 FORME Studio</span><div><a href="#contact">Instagram</a><a href="#contact">Impressum</a><a href="#contact">Datenschutz</a></div></footer>
+  <section class="product-detail" id="product-detail" aria-hidden="true"><div class="detail-image"><img id="detail-image" src="" alt=""></div><div class="detail-content"><button class="detail-close" id="detail-close" aria-label="Produktansicht schließen">×</button><p class="kicker">FORME essentials</p><h2 id="detail-name"></h2><p class="detail-category" id="detail-category"></p><strong class="detail-price" id="detail-price"></strong><span class="detail-label">Farbe</span><div class="detail-options" id="color-options"></div><span class="detail-label">Größe</span><div class="detail-options" id="size-options"></div><p class="detail-material" id="detail-material"></p><div class="detail-quantity"><span class="detail-label">Anzahl</span><input id="detail-quantity" type="number" min="1" value="1"></div><button class="button detail-add" id="detail-add">In die Bag →</button></div></section><div class="detail-backdrop" id="detail-backdrop"></div>
+  <aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-top"><h2>Deine Bag</h2><button id="close">×</button></div><div id="cart-items"></div><div class="total"><span>Gesamt</span><strong id="total">0,00 EUR</strong></div><button class="button checkout">Zur Kasse →</button></aside><div class="backdrop" id="backdrop"></div>
+  <section class="auth-modal" id="auth-modal" aria-hidden="true" aria-labelledby="auth-title"><div class="auth-panel"><button class="auth-close" id="auth-close" type="button" aria-label="Anmeldung schließen">×</button><p class="kicker">FORME account</p><h2 id="auth-title">Willkommen zurück.</h2><div class="auth-tabs" role="tablist"><button class="auth-tab active" type="button" data-auth-mode="login">Anmelden</button><button class="auth-tab" type="button" data-auth-mode="register">Registrieren</button></div><form id="auth-form"><label for="auth-email">E-Mail-Adresse</label><input id="auth-email" type="email" autocomplete="email" required><label for="auth-password">Passwort</label><input id="auth-password" type="password" minlength="6" autocomplete="current-password" required><div class="auth-confirm-wrap"><label for="auth-confirm">Passwort bestätigen</label><input id="auth-confirm" type="password" minlength="6" autocomplete="new-password"></div><p class="auth-error" id="auth-error" role="alert"></p><button class="button auth-submit" type="submit">Anmelden →</button></form><p class="auth-note">Deine Daten bleiben auf diesem Gerät gespeichert.</p></div></section><div class="auth-backdrop" id="auth-backdrop"></div>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -78,42 +78,34 @@ const authBackdrop = document.querySelector('#auth-backdrop');
 const authForm = document.querySelector('#auth-form');
 const authButton = document.querySelector('#account-button');
 const authError = document.querySelector('#auth-error');
-const authTitle = document.querySelector('#auth-title');
 const authSubmit = document.querySelector('.auth-submit');
-const confirmWrap = document.querySelector('.auth-confirm-wrap');
-let authMode = 'login';
 
 function getCurrentUser() {
   return localStorage.getItem('forme-current-user');
 }
+
 function updateAccountButton() {
   const user = getCurrentUser();
-  authButton.textContent = user ? `Hallo, ${user.split('@')[0]}` : 'Anmelden';
+  const displayName = user ? user.charAt(0).toUpperCase() + user.slice(1) : '';
+  authButton.textContent = user ? `Hallo, ${displayName}` : 'Anmelden';
   authButton.title = user ? 'Abmelden' : 'Anmelden';
 }
-function setAuthMode(mode) {
-  authMode = mode;
-  document.querySelectorAll('.auth-tab').forEach((tab) => tab.classList.toggle('active', tab.dataset.authMode === mode));
-  const isRegistering = mode === 'register';
-  authTitle.textContent = isRegistering ? 'Dein Account.' : 'Willkommen zurück.';
-  authSubmit.textContent = isRegistering ? 'Account erstellen →' : 'Anmelden →';
-  confirmWrap.hidden = !isRegistering;
-  document.querySelector('#auth-password').autocomplete = isRegistering ? 'new-password' : 'current-password';
-  authError.textContent = '';
-}
+
 function openAuth() {
   authModal.classList.add('open');
   authBackdrop.classList.add('open');
   authModal.setAttribute('aria-hidden', 'false');
-  document.querySelector('#auth-email').focus();
+  document.querySelector('#auth-username').focus();
 }
+
 function closeAuth() {
   authModal.classList.remove('open');
   authBackdrop.classList.remove('open');
   authModal.setAttribute('aria-hidden', 'true');
   authForm.reset();
-  setAuthMode('login');
+  authError.textContent = '';
 }
+
 authButton.addEventListener('click', () => {
   if (getCurrentUser()) {
     localStorage.removeItem('forme-current-user');
@@ -122,37 +114,28 @@ authButton.addEventListener('click', () => {
   }
   openAuth();
 });
-document.querySelectorAll('.auth-tab').forEach((tab) => tab.addEventListener('click', () => setAuthMode(tab.dataset.authMode)));
+
 document.querySelector('#auth-close').addEventListener('click', closeAuth);
 authBackdrop.addEventListener('click', closeAuth);
-authForm.addEventListener('submit', async (event) => {
+authForm.addEventListener('submit', (event) => {
   event.preventDefault();
-  const email = document.querySelector('#auth-email').value.trim().toLowerCase();
+
+  const username = document.querySelector('#auth-username').value.trim().toLowerCase();
   const password = document.querySelector('#auth-password').value;
-  if (authMode === 'register' && password !== document.querySelector('#auth-confirm').value) {
-    authError.textContent = 'Die Passwörter stimmen nicht überein.';
+
+  authError.textContent = '';
+  authSubmit.disabled = true;
+
+  if (username !== 'noah' || password !== '1234') {
+    authError.textContent = 'Benutzername oder Passwort ist falsch.';
+    authSubmit.disabled = false;
     return;
   }
-  authSubmit.disabled = true;
-  authError.textContent = '';
-  try {
-    const response = await fetch(`/api/${authMode}`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email, password })
-    });
-    const result = await response.json();
-    if (!response.ok) {
-      authError.textContent = result.error || 'Die Anmeldung ist fehlgeschlagen.';
-      return;
-    }
-    localStorage.setItem('forme-current-user', result.email);
-    updateAccountButton();
-    closeAuth();
-  } catch (error) {
-    authError.textContent = 'Server nicht erreichbar. Bitte starte das Backend.';
-  } finally {
-    authSubmit.disabled = false;
-  }
+
+  localStorage.setItem('forme-current-user', username);
+  updateAccountButton();
+  closeAuth();
+  authSubmit.disabled = false;
 });
+
 updateAccountButton();

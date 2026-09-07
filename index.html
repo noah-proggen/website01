@@ -3,53 +3,293 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="FORME - zeitlose Essentials für jeden Tag.">
-  <title>FORME - Everyday essentials</title>
+  <meta name="description" content="Seebad Caputh - Strandbad am Schwielowsee mit Restaurant, Cocktails und traumhafter Atmosphäre.">
+  <title>Seebad Caputh - Strandbad & Restaurant</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <style>
-    :root{--paper:#f7f7f5;--acid:#d7263d;--muted:#737373;--line:rgba(23,23,23,.16)}
-    .kicker,h1 em,h2 em,.newsletter #message{color:#d7263d}
-    .site-header nav a:hover,footer a:hover{color:#d7263d}
-    .button,.filters button.active,.filters button:hover,.detail-options button.selected,.detail-options button:hover{background:#d7263d}
-    .button:hover{background:#a91d30}
-    .product-image{position:relative}
-    .product-badge{position:absolute;top:12px;left:12px;z-index:1;padding:7px 11px;border-radius:999px;color:#fff;background:#171717;font-size:.62rem;font-weight:700;letter-spacing:.08em}
-    .product-badge.sale-badge{background:#d7263d}
-  </style>
-  <style>
-    .product-detail{position:fixed;z-index:7;inset:50% auto auto 50%;display:grid;grid-template-columns:1fr 1fr;width:min(900px,calc(100% - 32px));max-height:calc(100vh - 32px);overflow:auto;background:var(--paper);box-shadow:0 20px 70px #0004;transform:translate(-50%,-50%) scale(.96);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}.product-detail.open{transform:translate(-50%,-50%) scale(1);opacity:1;pointer-events:auto}.detail-image{min-height:500px;background:#ddd9d0}.detail-image img{width:100%;height:100%;display:block;object-fit:cover}.detail-content{position:relative;padding:48px}.detail-close{position:absolute;top:20px;right:22px;border:0;background:transparent;font-size:1.8rem}.detail-content h2{margin-bottom:12px;font-size:clamp(2.3rem,4vw,4rem)}.detail-category{margin:0 0 28px;color:var(--muted);font-size:.75rem;text-transform:uppercase}.detail-price{display:block;margin-bottom:30px}.detail-label{display:block;margin:22px 0 9px;font-size:.7rem;font-weight:700;text-transform:uppercase}.detail-options{display:flex;flex-wrap:wrap;gap:7px}.detail-options button{padding:9px 12px;border:1px solid var(--line);background:transparent;font-size:.72rem}.detail-options button.selected,.detail-options button:hover{color:var(--paper);background:var(--ink)}.detail-material{margin:28px 0;color:var(--muted);font-size:.78rem;line-height:1.5}.detail-quantity{display:flex;align-items:center;gap:12px}.detail-quantity input{width:55px;padding:10px;border:1px solid var(--line);background:transparent;text-align:center}.detail-add{width:100%;margin-top:28px}.detail-backdrop{position:fixed;z-index:6;inset:0;display:none;background:#17171799}.detail-backdrop.open{display:block}@media(max-width:650px){.product-detail{display:block;max-height:calc(100vh - 20px)}.detail-image{min-height:260px;max-height:38vh}.detail-content{padding:30px 24px 28px}}
-  </style>
 </head>
 <body>
-
   <header class="site-header">
-    <button class="menu-toggle" aria-label="Menü öffnen">☰</button>
-    <a class="logo" href="#top">FORME<span>®</span></a>
-    <form class="search-form" role="search">
-      <label class="sr-only" for="site-search">Produkte suchen</label>
-      <input id="site-search" type="search" placeholder="Suche" autocomplete="off">
-      <button type="submit" aria-label="Suche starten">⌕</button>
-    </form>
-    <nav aria-label="Hauptnavigation"><a href="#shop">Damen</a><a href="#shop">Herren</a><a href="#shop" data-nav-filter="Sale">Sale</a><a href="#shop" data-nav-filter="Neu">Neu</a></nav>
-    <div class="account-actions"><button class="account-button" id="account-button" type="button">Anmelden</button><button class="cart-button" aria-label="Warenkorb öffnen"><span class="cart-icon" aria-hidden="true"></span><span id="cart-count">0</span></button></div>
+    <a class="logo" href="#">Seebad<span>Caputh</span></a>
+    <nav aria-label="Hauptnavigation">
+      <a href="#">Startseite</a>
+      <a href="#speisekarte">Speisekarte</a>
+      <a href="#rezensionen">Rezensionen</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#reservierung" class="button">Reservieren</a>
+    </div>
   </header>
-  <main id="top">
+
+  <main>
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="hero-copy"><p class="kicker">Collection 01 / 2026</p><h1>Wear your<br><em>everyday.</em></h1><p>Klare Formen. Starke Basics. Kleidung, die bleibt, wenn der Trend längst weiterzieht.</p><a class="button" href="#shop">Kollektion entdecken <span>↘</span></a></div>
-      <div class="hero-visual"><img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1200&q=85" alt="Model in moderner Kleidung"><span>FORME / 001</span><b>NEW<br>SEASON</b></div>
+      <div class="hero-content">
+        <p class="kicker">Strandbad am Schwielowsee</p>
+        <h1>Erleben Sie<br><em>Caputh.</em></h1>
+        <p class="hero-description">
+          Traumhafte Sonnenuntergänge, hausgemachte Pizza, erfrischende Cocktails und ein einzigartiges 
+          Flair direkt am Wasser. Perfekt für Hochzeiten, Events oder einen entspannten Tag am Strand.
+        </p>
+        <div class="hero-cta">
+          <a class="button" href="#reservierung">Tisch reservieren</a>
+          <a class="button secondary" href="#speisekarte">Speisekarte ansehen</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">4,7</span>
+            <span class="stat-label"> Bewertung</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">698</span>
+            <span class="stat-label">Rezensionen</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">20-30</span>
+            <span class="stat-label">pro Person</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85" 
+             alt="Strandbad Caputh am Schwielowsee">
+      </div>
     </section>
-    <div class="ticker"><span>BUILT FOR EVERYDAY</span><span>DESIGNED IN BERLIN</span><span>MADE TO LAST</span></div>
-    <section class="shop" id="shop"><div class="heading"><div><p class="kicker">The essentials</p><h2>Shop the edit</h2></div><p>Eine bewusst kuratierte Auswahl an Teilen für jeden Tag.</p></div><div class="filters"><button class="active" data-filter="Alle">Alle</button><button data-filter="T-Shirts">T-Shirts</button><button data-filter="Hosen">Hosen</button><button data-filter="Schuhe">Schuhe</button><button data-filter="Jacken">Jacken</button></div><div class="products" id="products"></div></section>
-    <section class="story" id="story"><img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?auto=format&fit=crop&w=1200&q=85" alt="Moderner Streetstyle"><div><p class="kicker">Our point of view</p><h2>Less noise.<br><em>More you.</em></h2><p>FORME ist eine unabhängige Modemarke für Menschen, die ihren eigenen Rhythmus tragen. Zeitlose Silhouetten mit Haltung, Komfort und einem Blick fürs Detail.</p><a class="text-link" href="#contact">Mehr über FORME →</a></div></section>
-    <section class="newsletter" id="contact"><p class="kicker">Stay in the loop</p><h2>Join the<br><em>inner circle.</em></h2><form id="newsletter"><input type="email" placeholder="Deine E-Mail-Adresse" required><button>Anmelden ↗</button></form><p id="message"></p></section>
+
+    <!-- Ticker -->
+    <div class="ticker">
+      <span>STRANDBAD RESTAURANT EVENTS HOCHZEITEN</span>
+      <span>STRANDBAD RESTAURANT EVENTS HOCHZEITEN</span>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-text">
+          <p class="kicker">Über uns</p>
+          <h2>Ein Ort zum<br><em>Verweilen.</em></h2>
+          <p>
+            Das Seebad Caputh ist mehr als nur ein Strandbad es ist ein Erlebnis. 
+            Direkt am Schwielowsee gelegen, bieten wir Ihnen eine einzigartige Kombination 
+            aus entspanntem Strandtag, kulinarischen Genüssen und unvergesslichen Momenten.
+          </p>
+          <p>
+            Ob Sie am Strand die Sonne genießen, in unserem Restaurant regionale Spezialitäten 
+            probieren oder bei einem kühlen Cocktail den Sonnenuntergang bewundern bei uns 
+            finden Sie alles, was das Herz begehrt.
+          </p>
+        </div>
+        <div class="about-images">
+          <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=85" 
+                 alt="Sonnenuntergang am Schwielowsee">
+            <span>Sonnenuntergang</span>
+          </div>
+          <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=85" 
+                 alt="Hausgemachte Pizza">
+            <span>Pizza</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Speisekarte Section -->
+    <section class="menu" id="speisekarte">
+      <div class="container">
+        <div class="section-header">
+          <p class="kicker">Unsere Empfehlungen</p>
+          <h2>Speisekarte</h2>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <h3>Antipasti Teller</h3>
+            <p>Italienische Vorspeisen mit frischen Zutaten</p>
+          </div>
+          <div class="menu-item">
+            <h3>Hausgemachte Pizza</h3>
+            <p>Knusprig gebacken mit klassischen oder speziellen Toppings</p>
+          </div>
+          <div class="menu-item">
+            <h3>Cocktails</h3>
+            <p>Erfrischende Drinks für heiße Tage</p>
+          </div>
+          <div class="menu-item">
+            <h3>Champagner</h3>
+            <p>Für besondere Anlässe und Feiern</p>
+          </div>
+        </div>
+        <div class="menu-cta">
+          <a class="button" href="#">Komplette Speisekarte</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rezensionen Section -->
+    <section class="reviews" id="rezensionen">
+      <div class="container">
+        <div class="section-header">
+          <p class="kicker">Das sagen unsere Gäste</p>
+          <h2>Rezensionen</h2>
+        </div>
+        <div class="reviews-grid">
+          <div class="review-card">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <p>"Die leckere selbstgemachte Pizza war der Hammer!"</p>
+            <span>- Gast</span>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <p>"Super nettes Personal, lecker Bier & Cocktails und lecker Essen."</p>
+            <span>- Gast</span>
+          </div>
+          <div class="review-card">
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <p>"Jedes Mal ein tolles Erlebnis und immer wieder neue Sachen zu entdecken."</p>
+            <span>- Gast</span>
+          </div>
+        </div>
+        <div class="rating-overview">
+          <div class="overall-rating">
+            <span class="rating-number">4,7</span>
+            <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+            <p>Basierend auf 698 Bewertungen</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galerie Section -->
+    <section class="gallery" id="galerie">
+      <div class="container">
+        <div class="section-header">
+          <p class="kicker">Fotobeiträge</p>
+          <h2>Galerie</h2>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&q=85" alt="Sonnenuntergang">
+            <span>Sonnenuntergang</span>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&q=85" alt="Pizza">
+            <span>Essen</span>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&q=85" alt="Cocktails">
+            <span>Cocktails</span>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=85" alt="Seebrücke">
+            <span>Seebrücke</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reservierung Section -->
+    <section class="reservation" id="reservierung">
+      <div class="container">
+        <div class="section-header light">
+          <p class="kicker">Reservierung</p>
+          <h2>Ihren Tisch reservieren</h2>
+        </div>
+        <form class="reservation-form" id="reservation-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="guests">Anzahl Gäste *</label>
+              <input type="number" id="guests" name="guests" min="1" max="50" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Datum *</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+              <label for="time">Uhrzeit *</label>
+              <input type="time" id="time" name="time" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="message">Nachricht</label>
+            <textarea id="message" name="message" rows="3"></textarea>
+          </div>
+          <button type="submit" class="button">Reservierung anfragen</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Kontakt Section -->
+    <section class="contact" id="kontakt">
+      <div class="container">
+        <div class="section-header light">
+          <p class="kicker">Erreichen Sie uns</p>
+          <h2>Kontakt</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h3>Adresse</h3>
+            <p>Weg zum Strandbad 1</p>
+            <p>14548 Schwielowsee-Caputh</p>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h3>Telefon</h3>
+            <p><a href="tel:033209228030">033209 228030</a></p>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">🌐</div>
+            <h3>Website</h3>
+            <p><a href="https://seebad-caputh.de" target="_blank">seebad-caputh.de</a></p>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>E-Mail</h3>
+            <p><a href="mailto:info@seebad-caputh.de">info@seebad-caputh.de</a></p>
+          </div>
+        </div>
+        <div class="map-link">
+          <p>📌 <a href="https://maps.google.com/?q=8XVJ+W8+Schwielowsee" target="_blank">Auf Google Maps anzeigen</a></p>
+          <p>Google Plus Code: <strong>8XVJ+W8 Schwielowsee</strong></p>
+        </div>
+      </div>
+    </section>
   </main>
-  <footer><a class="logo" href="#top">FORME<span>®</span></a><span>© 2026 FORME Studio</span><div><a href="#contact">Instagram</a><a href="#contact">Impressum</a><a href="#contact">Datenschutz</a></div></footer>
-  <section class="product-detail" id="product-detail" aria-hidden="true"><div class="detail-image"><img id="detail-image" src="" alt=""></div><div class="detail-content"><button class="detail-close" id="detail-close" aria-label="Produktansicht schließen">×</button><p class="kicker">FORME essentials</p><h2 id="detail-name"></h2><p class="detail-category" id="detail-category"></p><strong class="detail-price" id="detail-price"></strong><span class="detail-label">Farbe</span><div class="detail-options" id="color-options"></div><span class="detail-label">Größe</span><div class="detail-options" id="size-options"></div><p class="detail-material" id="detail-material"></p><div class="detail-quantity"><span class="detail-label">Anzahl</span><input id="detail-quantity" type="number" min="1" value="1"></div><button class="button detail-add" id="detail-add">In die Bag →</button></div></section><div class="detail-backdrop" id="detail-backdrop"></div>
-  <aside class="drawer" id="drawer" aria-hidden="true"><div class="drawer-top"><h2>Deine Bag</h2><button id="close">×</button></div><div id="cart-items"></div><div class="total"><span>Gesamt</span><strong id="total">0,00 EUR</strong></div><button class="button checkout">Zur Kasse →</button></aside><div class="backdrop" id="backdrop"></div>
-  <section class="auth-modal" id="auth-modal" aria-hidden="true" aria-labelledby="auth-title"><div class="auth-panel"><button class="auth-close" id="auth-close" type="button" aria-label="Anmeldung schließen">×</button><p class="kicker">FORME account</p><h2 id="auth-title">Anmeldung</h2><form id="auth-form"><label for="auth-username">Benutzername</label><input id="auth-username" type="text" autocomplete="username" required><label for="auth-password">Passwort</label><input id="auth-password" type="password" minlength="4" autocomplete="current-password" required><p class="auth-error" id="auth-error" role="alert"></p><button class="button auth-submit" type="submit">Einloggen →</button></form><p class="auth-note">Demo-Login: Benutzername <strong>noah</strong> · Passwort <strong>1234</strong></p></div></section><div class="auth-backdrop" id="auth-backdrop"></div>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <a class="logo" href="#">Seebad<span>Caputh</span></a>
+        <div class="footer-links">
+          <a href="#">Startseite</a>
+          <a href="#speisekarte">Speisekarte</a>
+          <a href="#rezensionen">Rezensionen</a>
+          <a href="#galerie">Galerie</a>
+          <a href="#kontakt">Kontakt</a>
+          <a href="#">Datenschutz</a>
+          <a href="#">Impressum</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Seebad Caputh. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>

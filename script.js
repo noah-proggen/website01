@@ -1,141 +1,157 @@
-const products = [
-  { name: 'Basic T-Shirt Weiß', category: 'T-Shirts', price: 19.99, badge: 'NEU', colors: ['Weiß', 'Schwarz', 'Marineblau', 'Grau meliert', 'Sand'], sizes: ['XS', 'S', 'M', 'L', 'XL', 'XXL'], material: '100 % Baumwolle (Single-Jersey)', care: 'Maschinenwäsche 30 °C, nicht bleichen, bei mittlerer Hitze bügeln', image: 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=700&q=85' },
-  { name: 'Oversized Shirt Schwarz', category: 'T-Shirts', price: 24.99, badge: 'NEU', colors: ['Schwarz', 'Weiß', 'Olivgrün', 'Beige'], sizes: ['S', 'M', 'L', 'XL'], material: '80 % Baumwolle, 20 % Polyester', care: 'Maschinenwäsche 30 °C, links waschen, nicht im Trockner trocknen', image: 'https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=85' },
-  { name: 'Slim-Fit Jeans Blau', category: 'Hosen', price: 49.99, colors: ['Mittelblau', 'Dunkelblau', 'Schwarz', 'Hellblau (Used-Look)'], sizes: ['28/30', '30/32', '32/32', '34/34', '36/34'], material: '98 % Baumwolle, 2 % Elasthan', care: 'Maschinenwäsche 30 °C, auf links waschen, nicht bleichen', image: 'https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85' },
-  { name: 'High-Waist Jeans', category: 'Hosen', price: 54.99, badge: '-20%', colors: ['Dunkelblau', 'Schwarz', 'Hellblau', 'Weiß'], sizes: ['34', '36', '38', '40', '42'], material: '99 % Baumwolle, 1 % Elasthan', care: 'Maschinenwäsche 30 °C, nicht im Trockner, schonend bügeln', image: 'https://images.unsplash.com/photo-1584370848010-d7fe6bc767ec?auto=format&fit=crop&w=700&q=85' },
-  { name: 'Chunky Sneaker Weiß', category: 'Schuhe', price: 79.99, badge: '-20%', colors: ['Weiß', 'Schwarz', 'Rosa', 'Beige/Creme'], sizes: ['36', '37', '38', '39', '40', '41'], material: 'Obermaterial Kunstleder, Sohle Gummi', care: 'Nicht waschbar, mit feuchtem Tuch reinigen, an der Luft trocknen', image: 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=700&q=85' },
-  { name: 'Retro Sneaker Bunt', category: 'Schuhe', price: 89.99, badge: '-20%', colors: ['Mehrfarbig (Rot/Blau/Weiß)', 'Grün/Gelb', 'Schwarz/Weiß', 'Pastell-Mix'], sizes: ['38', '39', '40', '41', '42', '43'], material: 'Obermaterial Textil/Synthetik, Sohle Gummi', care: 'Nicht waschbar, Flecken mit Seifenlauge entfernen', image: 'https://images.unsplash.com/photo-1552346154-21d32810aba3?auto=format&fit=crop&w=700&q=85' },
-  { name: 'Steppjacke Schwarz', category: 'Jacken', price: 99.99, badge: 'NEU', colors: ['Schwarz', 'Olivgrün', 'Marineblau', 'Bordeaux'], sizes: ['XS', 'S', 'M', 'L', 'XL'], material: 'Außenmaterial 100 % Polyester, Füllung Daunen-Ersatz', care: 'Handwäsche oder Schonwaschgang 30 °C, nicht bleichen, nicht bügeln', image: 'https://images.unsplash.com/photo-1548883354-94bcfe321cbb?auto=format&fit=crop&w=700&q=85' },
-  { name: 'Winterjacke Grau', category: 'Jacken', price: 129.99, colors: ['Grau', 'Schwarz', 'Camel', 'Dunkelblau'], sizes: ['S', 'M', 'L', 'XL', 'XXL'], material: 'Außenmaterial 100 % Polyester, Futter Fleece', care: 'Maschinenwäsche 30 °C Schonwaschgang, nicht im Trockner trocknen, nicht bügeln', image: 'https://images.unsplash.com/photo-1548126032-079a0fb0099d?auto=format&fit=crop&w=700&q=85' }
-];
-const grid = document.querySelector('#products');
-const filters = document.querySelectorAll('.filters button');
-const drawer = document.querySelector('#drawer');
-const backdrop = document.querySelector('#backdrop');
-const cartItems = document.querySelector('#cart-items');
-const cartCount = document.querySelector('#cart-count');
-const total = document.querySelector('#total');
-const detail = document.querySelector('#product-detail');
-const detailBackdrop = document.querySelector('#detail-backdrop');
-let cart = [];
-let selectedProduct = null;
-let selectedColor = '';
-let selectedSize = '';
-const money = (value) => value.toLocaleString('de-DE', { style: 'currency', currency: 'EUR' });
+// Seebad Caputh - Website JavaScript
 
-function renderProducts(category = 'Alle') {
-  const visible = category === 'Alle' ? products : category === 'Sale' ? products.filter((product) => product.badge === '-20%') : category === 'Neu' ? products.filter((product) => product.badge === 'NEU') : products.filter((product) => product.category === category);
-  grid.innerHTML = visible.map((product) => `<article class="product" data-name="${product.name}"><div class="product-image"><img src="${product.image}" alt="${product.name}" loading="lazy">${product.badge ? `<span class="product-badge ${product.badge === '-20%' ? 'sale-badge' : ''}">${product.badge}</span>` : ''}<button class="add" data-name="${product.name}" aria-label="${product.name} direkt hinzufügen">+</button></div><div class="product-info"><div><h3>${product.name}</h3><p>${product.category}</p></div><strong class="price">${money(product.price)}</strong></div></article>`).join('');
-  grid.querySelectorAll('.product').forEach((card) => card.addEventListener('click', (event) => { if (!event.target.closest('.add')) openDetail(card.dataset.name); }));
-  grid.querySelectorAll('.add').forEach((button) => button.addEventListener('click', () => addToCart(button.dataset.name, 'Standard', 'Standard', 1)));
-}
-function openDetail(name) {
-  selectedProduct = products.find((product) => product.name === name);
-  selectedColor = selectedProduct.colors[0];
-  selectedSize = selectedProduct.sizes[0];
-  document.querySelector('#detail-image').src = selectedProduct.image;
-  document.querySelector('#detail-image').alt = selectedProduct.name;
-  document.querySelector('#detail-name').textContent = selectedProduct.name;
-  document.querySelector('#detail-category').textContent = selectedProduct.category;
-  document.querySelector('#detail-price').textContent = money(selectedProduct.price);
-  document.querySelector('#detail-material').innerHTML = `<strong>Material:</strong> ${selectedProduct.material}<br><strong>Pflege:</strong> ${selectedProduct.care}`;
-  renderOptions('#color-options', selectedProduct.colors, selectedColor, (value) => { selectedColor = value; });
-  renderOptions('#size-options', selectedProduct.sizes, selectedSize, (value) => { selectedSize = value; });
-  document.querySelector('#detail-quantity').value = 1;
-  detail.classList.add('open');
-  detailBackdrop.classList.add('open');
-  detail.setAttribute('aria-hidden', 'false');
-}
-function renderOptions(selector, options, selected, onSelect) {
-  const container = document.querySelector(selector);
-  container.innerHTML = options.map((option) => `<button type="button" class="${option === selected ? 'selected' : ''}">${option}</button>`).join('');
-  container.querySelectorAll('button').forEach((button) => button.addEventListener('click', () => { container.querySelectorAll('button').forEach((item) => item.classList.remove('selected')); button.classList.add('selected'); onSelect(button.textContent); }));
-}
-function closeDetail() { detail.classList.remove('open'); detailBackdrop.classList.remove('open'); detail.setAttribute('aria-hidden', 'true'); }
-function addToCart(name, color, size, quantity) { const product = products.find((item) => item.name === name); for (let index = 0; index < quantity; index += 1) cart.push({ ...product, selectedColor: color, selectedSize: size }); renderCart(); openDrawer(); }
-function renderCart() {
-  cartCount.textContent = cart.length;
-  total.textContent = money(cart.reduce((sum, product) => sum + product.price, 0));
-  cartItems.innerHTML = cart.length ? cart.map((product, index) => `<div class="cart-row"><div><strong>${product.name}</strong><small>${product.selectedColor} · Größe ${product.selectedSize}<br>${money(product.price)}</small></div><button class="remove" data-index="${index}">Entfernen</button></div>`).join('') : '<p class="empty">Deine Bag ist noch leer.</p>';
-  cartItems.querySelectorAll('.remove').forEach((button) => button.addEventListener('click', () => { cart.splice(Number(button.dataset.index), 1); renderCart(); }));
-}
-function openDrawer() { drawer.classList.add('open'); backdrop.classList.add('open'); drawer.setAttribute('aria-hidden', 'false'); }
-function closeDrawer() { drawer.classList.remove('open'); backdrop.classList.remove('open'); drawer.setAttribute('aria-hidden', 'true'); }
-document.querySelector('.cart-button').addEventListener('click', openDrawer);
-document.querySelector('#close').addEventListener('click', closeDrawer);
-backdrop.addEventListener('click', closeDrawer);
-document.querySelector('#detail-close').addEventListener('click', closeDetail);
-detailBackdrop.addEventListener('click', closeDetail);
-document.querySelector('#detail-add').addEventListener('click', () => { const quantity = Math.max(1, Number(document.querySelector('#detail-quantity').value) || 1); addToCart(selectedProduct.name, selectedColor, selectedSize, quantity); closeDetail(); });
-filters.forEach((filter) => filter.addEventListener('click', () => { filters.forEach((item) => item.classList.remove('active')); filter.classList.add('active'); renderProducts(filter.dataset.filter); }));
-document.querySelectorAll('[data-nav-filter]').forEach((link) => link.addEventListener('click', () => renderProducts(link.dataset.navFilter)));
-document.querySelector('#newsletter').addEventListener('submit', (event) => { event.preventDefault(); document.querySelector('#message').textContent = 'Danke, du bist dabei.'; event.target.reset(); });
-document.querySelector('.checkout').addEventListener('click', () => { if (cart.length) alert('Danke! Der Checkout wird bald verfügbar sein.'); });
-renderProducts();
+// Mobile Menu Toggle (falls benötigt)
+const menuToggle = document.querySelector('.menu-toggle');
+const nav = document.querySelector('.site-header nav');
 
-const authModal = document.querySelector('#auth-modal');
-const authBackdrop = document.querySelector('#auth-backdrop');
-const authForm = document.querySelector('#auth-form');
-const authButton = document.querySelector('#account-button');
-const authError = document.querySelector('#auth-error');
-const authSubmit = document.querySelector('.auth-submit');
-
-function getCurrentUser() {
-  return localStorage.getItem('forme-current-user');
+if (menuToggle && nav) {
+  menuToggle.addEventListener('click', () => {
+    nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+  });
 }
 
-function updateAccountButton() {
-  const user = getCurrentUser();
-  const displayName = user ? user.charAt(0).toUpperCase() + user.slice(1) : '';
-  authButton.textContent = user ? `Hallo, ${displayName}` : 'Anmelden';
-  authButton.title = user ? 'Abmelden' : 'Anmelden';
-}
-
-function openAuth() {
-  authModal.classList.add('open');
-  authBackdrop.classList.add('open');
-  authModal.setAttribute('aria-hidden', 'false');
-  document.querySelector('#auth-username').focus();
-}
-
-function closeAuth() {
-  authModal.classList.remove('open');
-  authBackdrop.classList.remove('open');
-  authModal.setAttribute('aria-hidden', 'true');
-  authForm.reset();
-  authError.textContent = '';
-}
-
-authButton.addEventListener('click', () => {
-  if (getCurrentUser()) {
-    localStorage.removeItem('forme-current-user');
-    updateAccountButton();
-    return;
-  }
-  openAuth();
+// Smooth Scroll für Ankerlinks
+const links = document.querySelectorAll('a[href^="#"]');
+links.forEach(link => {
+  link.addEventListener('click', (e) => {
+    e.preventDefault();
+    const targetId = link.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+      const offsetTop = targetElement.offsetTop - 80;
+      window.scrollTo({
+        top: offsetTop,
+        behavior: 'smooth'
+      });
+    }
+  });
 });
 
-document.querySelector('#auth-close').addEventListener('click', closeAuth);
-authBackdrop.addEventListener('click', closeAuth);
-authForm.addEventListener('submit', (event) => {
-  event.preventDefault();
+// Reservierungsformular-Handling
+const reservationForm = document.getElementById('reservation-form');
+if (reservationForm) {
+  reservationForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const formData = new FormData(reservationForm);
+    const data = Object.fromEntries(formData);
+    
+    // Validierung
+    if (!data.name || !data.guests || !data.date || !data.time) {
+      alert('Bitte füllen Sie alle Pflichtfelder aus.');
+      return;
+    }
+    
+    // Simulierte Bestätigung
+    alert(`Vielen Dank für Ihre Reservierungsanfrage, ${data.name}!\n\n` +
+          `Wir haben Ihre Anfrage für ${data.guests} Personen am ${data.date} um ${data.time} Uhr erhalten.\n` +
+          `Sie erhalten in Kürze eine Bestätigung per E-Mail oder Telefon.`);
+    
+    reservationForm.reset();
+  });
+}
 
-  const username = document.querySelector('#auth-username').value.trim().toLowerCase();
-  const password = document.querySelector('#auth-password').value;
+// Galerie - Lightbox (einfache Implementierung)
+const galleryItems = document.querySelectorAll('.gallery-item');
+const lightbox = document.createElement('div');
+lightbox.className = 'lightbox';
+lightbox.style.cssText = `
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+`;
 
-  authError.textContent = '';
-  authSubmit.disabled = true;
+const lightboxImg = document.createElement('img');
+lightboxImg.style.cssText = `max-width: 90%; max-height: 90%; border-radius: 8px;`;
+lightbox.appendChild(lightboxImg);
 
-  if (username !== 'noah' || password !== '1234') {
-    authError.textContent = 'Benutzername oder Passwort ist falsch.';
-    authSubmit.disabled = false;
-    return;
-  }
+document.body.appendChild(lightbox);
 
-  localStorage.setItem('forme-current-user', username);
-  updateAccountButton();
-  closeAuth();
-  authSubmit.disabled = false;
+galleryItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const imgSrc = item.querySelector('img').src;
+    lightboxImg.src = imgSrc;
+    lightbox.style.opacity = '1';
+    lightbox.style.pointerEvents = 'auto';
+  });
 });
 
-updateAccountButton();
+// Lightbox schließen
+lightbox.addEventListener('click', (e) => {
+  if (e.target === lightbox) {
+    lightbox.style.opacity = '0';
+    lightbox.style.pointerEvents = 'none';
+  }
+});
+
+// Header Scroll-Effekt
+theme: {
+  const header = document.querySelector('.site-header');
+  let lastScroll = 0;
+  
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    if (currentScroll <= 0) {
+      header.classList.remove('scrolled');
+      return;
+    }
+    if (currentScroll > lastScroll && !header.classList.contains('scrolling-down')) {
+      header.classList.add('scrolling-down');
+    } else if (currentScroll < lastScroll && header.classList.contains('scrolling-down')) {
+      header.classList.remove('scrolling-down');
+    }
+    lastScroll = currentScroll;
+  });
+}
+
+// Intersection Observer für Animationen
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, observerOptions);
+
+// Beobachte alle Sections
+document.querySelectorAll('section').forEach(section => {
+  section.style.opacity = '0';
+  section.style.transform = 'translateY(20px)';
+  section.style.transition = 'opacity 0.6s, transform 0.6s';
+  observer.observe(section);
+});
+
+// CSS für sichtbare Sections
+const style = document.createElement('style');
+style.textContent = `
+  section.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+`;
+document.head.appendChild(style);
+
+// Aktuelles Jahr im Footer
+const yearSpan = document.createElement('span');
+const footerText = document.querySelector('.footer-bottom p');
+if (footerText) {
+  const currentYear = new Date().getFullYear();
+  footerText.innerHTML = footerText.innerHTML.replace('2024', currentYear);
+}
+
+console.log('Seebad Caputh Website - JavaScript geladen');

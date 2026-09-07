@@ -1,9 +1,0 @@
-{
-  "name": "forme-store",
-  "version": "1.0.0",
-  "private": true,
-  "description": "FORME shop with a small JSON-backed authentication backend",
-  "scripts": {
-    "start": "node server.js"
-  }
-}

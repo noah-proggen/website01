@@ -45,7 +45,7 @@
             <span class="stat-label"> Bewertung</span>
           </div>
           <div class="stat">
-            <span class="stat-number">698</span>
+            <span class="stat-number">698+</span>
             <span class="stat-label">Rezensionen</span>
           </div>
           <div class="stat">
@@ -73,13 +73,13 @@
           <p class="kicker">Über uns</p>
           <h2>Ein Ort zum<br><em>Verweilen.</em></h2>
           <p>
-            Das Seebad Caputh ist mehr als nur ein Strandbad es ist ein Erlebnis. 
+            Das Seebad Caputh ist mehr als nur ein Strandbad – es ist ein Erlebnis. 
             Direkt am Schwielowsee gelegen, bieten wir Ihnen eine einzigartige Kombination 
             aus entspanntem Strandtag, kulinarischen Genüssen und unvergesslichen Momenten.
           </p>
           <p>
             Ob Sie am Strand die Sonne genießen, in unserem Restaurant regionale Spezialitäten 
-            probieren oder bei einem kühlen Cocktail den Sonnenuntergang bewundern bei uns 
+            probieren oder bei einem kühlen Cocktail den Sonnenuntergang bewundern – bei uns 
             finden Sie alles, was das Herz begehrt.
           </p>
         </div>
@@ -136,22 +136,12 @@
           <p class="kicker">Das sagen unsere Gäste</p>
           <h2>Rezensionen</h2>
         </div>
-        <div class="reviews-grid">
-          <div class="review-card">
-            <div class="review-stars">⭐⭐⭐⭐⭐</div>
-            <p>"Die leckere selbstgemachte Pizza war der Hammer!"</p>
-            <span>- Gast</span>
-          </div>
-          <div class="review-card">
-            <div class="review-stars">⭐⭐⭐⭐⭐</div>
-            <p>"Super nettes Personal, lecker Bier & Cocktails und lecker Essen."</p>
-            <span>- Gast</span>
-          </div>
-          <div class="review-card">
-            <div class="review-stars">⭐⭐⭐⭐⭐</div>
-            <p>"Jedes Mal ein tolles Erlebnis und immer wieder neue Sachen zu entdecken."</p>
-            <span>- Gast</span>
-          </div>
+        <div class="reviews-grid" id="reviews-container">
+          <!-- Rezensionen werden per JavaScript geladen -->
+        </div>
+        <div class="load-more-container">
+          <button class="button load-more" id="load-more">Mehr Bewertungen anzeigen</button>
+          <p id="reviews-count">Zeige <span id="shown-count">8</span> von <span id="total-count">100+</span> Rezensionen</p>
         </div>
         <div class="rating-overview">
           <div class="overall-rating">

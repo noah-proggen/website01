@@ -35,11 +35,12 @@ const FALLBACK_DATA = {
 };
 
 const VIEWS = [
-  { id: 'dashboard', label: 'Dashboard', icon: '🏠', roles: ['admin', 'user'] },
-  { id: 'admin', label: 'Verwaltung', icon: '⚙️', roles: ['admin'] },
+  { id: 'dashboard', label: 'Dashboard', roles: ['admin', 'user'] },
+  { id: 'admin', label: 'Verwaltung', roles: ['admin'] },
 ];
 
 const ACCENTS = ['lime', 'purple', 'orange', 'cyan'];
+const THEME_KEY = 'dashboardTheme';
 
 // ============================================
 // STATUS
@@ -60,8 +61,10 @@ const loginError     = document.getElementById('login-error');
 const usernameInput  = document.getElementById('username');
 const passwordInput  = document.getElementById('password');
 const logoutBtn      = document.getElementById('logout-btn');
+const headerNav      = document.getElementById('header-nav');
 const sidebarNav     = document.getElementById('sidebar-nav');
 const searchInput    = document.getElementById('search-input');
+const themeToggleBtn = document.getElementById('theme-toggle');
 
 // ============================================
 // DATEN LADEN
@@ -228,7 +231,7 @@ function showDashboard(user) {
   mainContent.classList.add('active');
 
   renderTopbar(user);
-  renderSidebar(user);
+  renderNav(user);
 
   const firstView = VIEWS.find(v => v.roles.includes(user.role));
   switchView(firstView ? firstView.id : 'dashboard');
@@ -242,18 +245,30 @@ function renderTopbar(user) {
   badge.classList.toggle('admin', user.role === 'admin');
 }
 
-function renderSidebar(user) {
+// Baut sowohl die Header-Navigation als auch die Sidebar-Navigation aus
+// derselben VIEWS-Liste auf – beide sind reine Textlinks (keine Icons).
+function renderNav(user) {
+  const items = VIEWS.filter(v => v.roles.includes(user.role));
+
+  headerNav.innerHTML = '';
   sidebarNav.innerHTML = '';
-  VIEWS.filter(v => v.roles.includes(user.role)).forEach(v => {
-    const btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'sidebar-btn';
-    btn.dataset.view = v.id;
-    btn.title = v.label;
-    btn.setAttribute('aria-label', v.label);
-    btn.textContent = v.icon;
-    btn.addEventListener('click', () => switchView(v.id));
-    sidebarNav.appendChild(btn);
+
+  items.forEach(v => {
+    const headerLink = document.createElement('button');
+    headerLink.type = 'button';
+    headerLink.className = 'header-nav-link';
+    headerLink.dataset.view = v.id;
+    headerLink.textContent = v.label;
+    headerLink.addEventListener('click', () => switchView(v.id));
+    headerNav.appendChild(headerLink);
+
+    const sidebarLink = document.createElement('button');
+    sidebarLink.type = 'button';
+    sidebarLink.className = 'sidebar-btn';
+    sidebarLink.dataset.view = v.id;
+    sidebarLink.textContent = v.label;
+    sidebarLink.addEventListener('click', () => switchView(v.id));
+    sidebarNav.appendChild(sidebarLink);
   });
 }
 
@@ -261,7 +276,7 @@ function switchView(viewId) {
   document.querySelectorAll('.view').forEach(sec => {
     sec.hidden = sec.id !== `view-${viewId}`;
   });
-  document.querySelectorAll('.sidebar-btn[data-view]').forEach(btn => {
+  document.querySelectorAll('[data-view]').forEach(btn => {
     btn.classList.toggle('active', btn.dataset.view === viewId);
   });
 
@@ -490,9 +505,33 @@ function handleAddUser(e) {
 }
 
 // ============================================
+// DARK / HELL MODE
+// ============================================
+// Die Theme-Klasse selbst wird bereits per Inline-Script im <head> gesetzt
+// (verhindert ein kurzes Aufblitzen des falschen Themes beim Laden).
+// Hier wird nur noch der Umschalt-Button synchronisiert und bedient.
+function currentTheme() {
+  return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+}
+
+function updateThemeToggleLabel(theme) {
+  themeToggleBtn.textContent = theme === 'light' ? '🌙 Dunkel' : '☀️ Hell';
+}
+
+function toggleTheme() {
+  const next = currentTheme() === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', next);
+  try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* ignore */ }
+  updateThemeToggleLabel(next);
+}
+
+// ============================================
 // INIT
 // ============================================
 async function init() {
+  updateThemeToggleLabel(currentTheme());
+  themeToggleBtn.addEventListener('click', toggleTheme);
+
   await loadData();
 
   const sessionUsername = getSessionUsername();

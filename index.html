@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Projekt-Dashboard – lokaler Login mit rollenbasierten Ansichten.">
   <title>Projekt-Dashboard</title>
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem('dashboardTheme');
+        var theme = saved || (window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.setAttribute('data-theme', theme);
+      } catch (e) { /* z. B. Storage blockiert – Standard-Theme bleibt aktiv */ }
+    })();
+  </script>
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -45,27 +54,39 @@
        DASHBOARD (versteckt bis Login erfolgreich)
        ========================================== -->
   <div id="main-content" class="app-shell">
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <div class="sidebar-logo" aria-hidden="true">⚡</div>
-      <nav class="sidebar-nav" id="sidebar-nav"><!-- rollenbasiert per JS --></nav>
-      <button id="logout-btn" class="sidebar-btn sidebar-logout" title="Logout" aria-label="Logout">⏻</button>
-    </aside>
+    <!-- Header: Logo + Navigation (Text) + Suche/Theme/Benutzer -->
+    <header class="site-header">
+      <div class="site-header-inner">
+        <span class="logo">
+          <span class="logo-mark" aria-hidden="true"></span>
+          <span class="logo-text">Projekt-Dashboard</span>
+        </span>
 
-    <div class="app-main">
-      <!-- Topbar -->
-      <header class="topbar">
-        <div class="search-box">
-          <span aria-hidden="true">🔍</span>
-          <input type="search" id="search-input" placeholder="Projekte durchsuchen …" autocomplete="off">
-        </div>
-        <div class="user-chip">
-          <span id="user-role-badge" class="role-badge"></span>
-          <span id="user-name" class="user-badge"></span>
-          <div id="user-avatar" class="avatar"></div>
-        </div>
-      </header>
+        <nav class="header-nav" id="header-nav" aria-label="Hauptnavigation"><!-- rollenbasiert per JS --></nav>
 
+        <div class="header-actions">
+          <div class="search-box">
+            <span aria-hidden="true">🔍</span>
+            <input type="search" id="search-input" placeholder="Projekte durchsuchen …" autocomplete="off">
+          </div>
+          <button type="button" id="theme-toggle" class="btn theme-toggle" aria-label="Hell-/Dunkelmodus umschalten"></button>
+          <div class="user-chip">
+            <span id="user-role-badge" class="role-badge"></span>
+            <span id="user-name" class="user-badge"></span>
+            <div id="user-avatar" class="avatar"></div>
+          </div>
+          <button id="logout-btn" class="btn">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <div class="app-body">
+      <!-- Sidebar: reine Text-Navigation -->
+      <aside class="sidebar">
+        <nav class="sidebar-nav" id="sidebar-nav" aria-label="Bereichsnavigation"><!-- rollenbasiert per JS --></nav>
+      </aside>
+
+      <div class="app-main">
       <!-- Ansicht: Dashboard / Projekte -->
       <section id="view-dashboard" class="view">
         <h2>Projekte</h2>
@@ -129,6 +150,7 @@
       <footer>
         <p>&copy; 2026 &middot; Lokales Projekt-Dashboard</p>
       </footer>
+      </div>
     </div>
   </div>
 

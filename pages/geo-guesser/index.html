@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Geo-Guesser - Errate Länder anhand von 360°-Panoramen">
+  <title>Geo-Guesser | Projekt-Dashboard</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.7/pannellum.css">
+</head>
+<body>
+  <main id="main-content" class="active">
+    <header>
+      <nav>
+        <div class="brand">🌍 Geo-Guesser</div>
+        <div class="nav-links"></div>
+        <div class="nav-user">
+          <a href="../../index.html" class="btn">← Zurück zum Dashboard</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="view">
+      <h2>Geo-Guesser</h2>
+      <p>Schau dich in der 360°-Ansicht um und errate, in welchem Land das Foto aufgenommen wurde.</p>
+
+      <div class="panel geo-game" id="geo-game" aria-label="Mini-Spiel: Länder erraten">
+        <div class="geo-game-image-wrap" id="geo-image-wrap">
+          <div id="geo-pano" class="geo-pano"></div>
+        </div>
+        <p class="geo-game-hint">🖱️ Ziehen zum Umschauen &middot; Scrollen zum Zoomen</p>
+        <p class="geo-game-credit" id="geo-credit"></p>
+
+        <p class="geo-game-progress" id="geo-progress">Frage 1 von 5</p>
+
+        <div class="geo-options" id="geo-options"></div>
+
+        <p class="geo-feedback" id="geo-feedback" role="status"></p>
+
+        <div class="geo-game-footer">
+          <span class="geo-score">Punkte: <strong id="geo-score">0</strong></span>
+          <button type="button" class="btn-geo-next" id="geo-next" hidden>Weiter →</button>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 &middot; Lokales Projekt-Dashboard</p>
+    </footer>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pannellum/2.5.7/pannellum.js"></script>
+  <script src="../../geo-game.js"></script>
+</body>
+</html>

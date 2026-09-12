@@ -47,6 +47,15 @@ const PROJECTS = [
     tags: ['Experiment'],
     roles: ['admin'],
   },
+  {
+    id: 'geo-guesser',
+    title: 'Geo-Guesser',
+    description: 'Mini-Spiel: Errate Länder anhand von echten 360°-Panoramafotos.',
+    icon: '🌍',
+    path: 'pages/geo-guesser/index.html',
+    tags: ['Spiel', 'JavaScript'],
+    roles: ['admin', 'schule', 'gast'],
+  },
 ];
 
 // Menüpunkte je Ansicht. roles = wer den Menüpunkt / die Ansicht sieht.

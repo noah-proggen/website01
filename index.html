@@ -44,56 +44,93 @@
   <!-- ==========================================
        DASHBOARD (versteckt bis Login erfolgreich)
        ========================================== -->
-  <main id="main-content">
-    <header>
-      <nav>
-        <div class="brand">Dashboard</div>
-        <div class="nav-links" id="nav-links"><!-- rollenbasiert per JS --></div>
-        <div class="nav-user">
-          <span id="user-badge" class="user-badge"></span>
-          <button id="logout-btn" class="btn">Logout</button>
+  <div id="main-content" class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-logo" aria-hidden="true">⚡</div>
+      <nav class="sidebar-nav" id="sidebar-nav"><!-- rollenbasiert per JS --></nav>
+      <button id="logout-btn" class="sidebar-btn sidebar-logout" title="Logout" aria-label="Logout">⏻</button>
+    </aside>
+
+    <div class="app-main">
+      <!-- Topbar -->
+      <header class="topbar">
+        <div class="search-box">
+          <span aria-hidden="true">🔍</span>
+          <input type="search" id="search-input" placeholder="Projekte durchsuchen …" autocomplete="off">
         </div>
-      </nav>
-    </header>
+        <div class="user-chip">
+          <span id="user-role-badge" class="role-badge"></span>
+          <span id="user-name" class="user-badge"></span>
+          <div id="user-avatar" class="avatar"></div>
+        </div>
+      </header>
 
-    <!-- Ansicht: Dashboard / Projekte -->
-    <section id="view-dashboard" class="view">
-      <h2>Projekte</h2>
-      <p id="dashboard-intro">Deine Projekte auf einen Blick.</p>
-      <div class="project-grid" id="project-grid"><!-- Projektkarten per JS --></div>
-    </section>
+      <!-- Ansicht: Dashboard / Projekte -->
+      <section id="view-dashboard" class="view">
+        <h2>Projekte</h2>
+        <p id="dashboard-intro">Deine Projekte auf einen Blick.</p>
 
-    <!-- Ansicht: Schule (nur admin + schule) -->
-    <section id="view-schule" class="view" hidden>
-      <h2>Schule</h2>
-      <p>Sammelseite für schulische Unterprojekte: Taschenrechner, Stoppuhr und eine Präsentation.</p>
-      <div class="panel">
-        <p>Öffne die Schulprojektseite mit allen Unterprojekten.</p>
-        <a href="pages/schule/index.html" class="btn btn-primary">Schulprojekte öffnen →</a>
-      </div>
-    </section>
+        <div class="stat-grid" id="stat-grid"><!-- Statuskarten per JS --></div>
+        <div id="project-sections"><!-- Projektkarten nach Kategorie per JS --></div>
+      </section>
 
-    <!-- Ansicht: Admin (nur admin) -->
-    <section id="view-admin" class="view" hidden>
-      <h2>Verwaltung</h2>
-      <p>Übersicht aller Benutzer und Projekte.</p>
-      <div class="panel">
-        <h3>Benutzer</h3>
-        <table class="data-table" id="users-table">
-          <thead><tr><th>Benutzer</th><th>Name</th><th>Rolle</th></tr></thead>
-          <tbody><!-- per JS --></tbody>
-        </table>
-      </div>
-      <div class="panel">
-        <h3>Alle Projekte</h3>
-        <ul class="link-list" id="all-projects-list"><!-- per JS --></ul>
-      </div>
-    </section>
+      <!-- Ansicht: Verwaltung (nur admin) -->
+      <section id="view-admin" class="view" hidden>
+        <h2>Verwaltung</h2>
+        <p>Lege fest, wer welche Unterseiten sehen darf, und verwalte Benutzer.</p>
 
-    <footer>
-      <p>&copy; 2026 &middot; Lokales Projekt-Dashboard</p>
-    </footer>
-  </main>
+        <div id="draft-banner"></div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Benutzer &amp; Zugriffsrechte</h3>
+            <div class="panel-actions">
+              <button type="button" id="discard-draft-btn" class="btn">Änderungen verwerfen</button>
+              <button type="button" id="save-json-btn" class="btn btn-primary">JSON herunterladen</button>
+            </div>
+          </div>
+          <p class="muted">
+            Änderungen wirken sofort in diesem Browser. Um sie für alle Besucher zu übernehmen,
+            lade die Datei herunter und ersetze <code>users.json</code> auf deinem Webspace.
+          </p>
+          <div id="users-list"><!-- Benutzer per JS --></div>
+        </div>
+
+        <div class="panel">
+          <h3>Neuen Benutzer anlegen</h3>
+          <form id="add-user-form" class="user-fields" autocomplete="off">
+            <div class="form-group">
+              <label for="new-username">Benutzername</label>
+              <input type="text" id="new-username" required>
+            </div>
+            <div class="form-group">
+              <label for="new-name">Anzeigename</label>
+              <input type="text" id="new-name" required>
+            </div>
+            <div class="form-group">
+              <label for="new-password">Passwort</label>
+              <input type="text" id="new-password" required>
+            </div>
+            <div class="form-group">
+              <label for="new-role">Rolle</label>
+              <select id="new-role">
+                <option value="user">Benutzer</option>
+                <option value="admin">Administrator</option>
+              </select>
+            </div>
+            <div class="form-group form-group-submit">
+              <button type="submit" class="btn btn-primary">Benutzer anlegen</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <footer>
+        <p>&copy; 2026 &middot; Lokales Projekt-Dashboard</p>
+      </footer>
+    </div>
+  </div>
 
   <script src="script.js"></script>
 </body>

@@ -1,7 +1,45 @@
 {
+  "projects": [
+    {
+      "id": "seebad-caputh",
+      "title": "Seebad Caputh",
+      "description": "Strandbad & Restaurant am Schwielowsee – Website mit Speisekarte, Rezensionen und Reservierung.",
+      "icon": "🏖️",
+      "path": "pages/seebad-caputh/index.html",
+      "category": "Websites",
+      "tags": ["Website", "Restaurant"]
+    },
+    {
+      "id": "schule",
+      "title": "Schulprojekte",
+      "description": "Sammelseite mit Unterprojekten: Taschenrechner, Stoppuhr und eine Präsentation zum Wasserkreislauf.",
+      "icon": "🎓",
+      "path": "pages/schule/index.html",
+      "category": "Schule",
+      "tags": ["Schule", "Sammlung"]
+    },
+    {
+      "id": "geo-guesser",
+      "title": "Geo-Guesser",
+      "description": "Mini-Spiel: Errate Länder anhand von echten 360°-Panoramafotos.",
+      "icon": "🌍",
+      "path": "pages/geo-guesser/index.html",
+      "category": "Spiele",
+      "tags": ["Spiel", "JavaScript"]
+    },
+    {
+      "id": "page01",
+      "title": "FORME Experiment",
+      "description": "Altes Layout-Experiment: eine E-Commerce-Demoseite.",
+      "icon": "🧪",
+      "path": "pages/page01/index.html",
+      "category": "Experimente",
+      "tags": ["Experiment"]
+    }
+  ],
   "users": [
-    { "username": "noah",   "password": "noah",   "name": "Noah",   "role": "admin" },
-    { "username": "schule", "password": "schule", "name": "Schule", "role": "schule" },
-    { "username": "gast",   "password": "gast",   "name": "Gast",   "role": "gast" }
+    { "username": "noah", "password": "noah", "name": "Noah", "role": "admin", "projects": [] },
+    { "username": "schule", "password": "schule", "name": "Schule", "role": "user", "projects": ["schule"] },
+    { "username": "gast", "password": "gast", "name": "Gast", "role": "user", "projects": ["seebad-caputh", "geo-guesser"] }
   ]
 }

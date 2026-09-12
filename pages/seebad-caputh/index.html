@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Seebad Caputh - Strandbad am Schwielowsee mit Restaurant, Cocktails und traumhafter Atmosphäre.">
+  <title>Seebad Caputh - Strandbad & Restaurant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="#">Seebad<span>Caputh</span></a>
+    <nav aria-label="Hauptnavigation">
+      <a href="#">Startseite</a>
+      <a href="#speisekarte">Speisekarte</a>
+      <a href="#rezensionen">Rezensionen</a>
+      <a href="#galerie">Galerie</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <div class="header-actions">
+      <!-- Login-Formular im Header -->
+      <div id="login-container" style="display: inline-block; margin-right: 15px;">
+        <form id="login-form" onsubmit="event.preventDefault(); login();" style="display: flex; gap: 8px;">
+          <input type="text" id="username" placeholder="Benutzer" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+          <input type="password" id="password" placeholder="Passwort" style="padding: 6px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+          <button type="submit" style="padding: 6px 12px; background: #2c3e50; color: white; border: none; border-radius: 4px; cursor: pointer;">Login</button>
+        </form>
+      </div>
+      <a href="#reservierung" class="button">Reservieren</a>
+    </div>
+  </header>
+
+  <!-- Geschützter Bereich (wird nach Login angezeigt) -->
+  <div id="protected-content" style="display: none; background: #e8f5e8; padding: 15px; text-align: center; border-bottom: 1px solid #ddd;">
+    <p style="margin: 0; color: #2c5234;">
+      🔒 Eingeloggt als: <strong id="user-name" style="font-weight: bold;"></strong>
+      | <button onclick="logout()" style="background: none; border: none; color: #2c5234; cursor: pointer; text-decoration: underline;">Logout</button>
+    </p>
+  </div>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <p class="kicker">Strandbad am Schwielowsee</p>
+        <h1>Erleben Sie<br><em>Caputh.</em></h1>
+        <p class="hero-description">
+          Traumhafte Sonnenuntergänge, hausgemachte Pizza, erfrischende Cocktails und ein einzigartiges 
+          Flair direkt am Wasser. Perfekt für Hochzeiten, Events oder einen entspannten Tag am Strand.
+        </p>
+        <div class="hero-cta">
+          <a class="button" href="#reservierung">Tisch reservieren</a>
+          <a class="button secondary" href="#speisekarte">Speisekarte ansehen</a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat">
+            <span class="stat-number">4,7</span>
+            <span class="stat-label"> Bewertung</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">698+</span>
+            <span class="stat-label">Rezensionen</span>
+          </div>
+          <div class="stat">
+            <span class="stat-number">20-30</span>
+            <span class="stat-label">pro Person</span>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=1200&q=85" 
+             alt="Strandbad Caputh am Schwielowsee">
+      </div>
+    </section>
+
+    <!-- Ticker -->
+    <div class="ticker">
+      <span>STRANDBAD RESTAURANT EVENTS HOCHZEITEN</span>
+      <span>STRANDBAD RESTAURANT EVENTS HOCHZEITEN</span>
+    </div>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+      <div class="container">
+        <div class="about-text">
+          <p class="kicker">Über uns</p>
+          <h2>Ein Ort zum<br><em>Verweilen.</em></h2>
+          <p>
+            Das Seebad Caputh ist mehr als nur ein Strandbad – es ist ein Erlebnis. 
+            Direkt am Schwielowsee gelegen, bieten wir Ihnen eine einzigartige Kombination 
+            aus entspanntem Strandtag, kulinarischen Genüssen und unvergesslichen Momenten.
+          </p>
+          <p>
+            Ob Sie am Strand die Sonne genießen, in unserem Restaurant regionale Spezialitäten 
+            probieren oder bei einem kühlen Cocktail den Sonnenuntergang bewundern – bei uns 
+            finden Sie alles, was das Herz begehrt.
+          </p>
+        </div>
+        <div class="about-images">
+          <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=85" 
+                 alt="Sonnenuntergang am Schwielowsee">
+            <span>Sonnenuntergang</span>
+          </div>
+          <div class="image-card">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=600&q=85" 
+                 alt="Hausgemachte Pizza">
+            <span>Pizza</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Speisekarte Section -->
+    <section class="menu" id="speisekarte">
+      <div class="container">
+        <div class="section-header">
+          <p class="kicker">Unsere Empfehlungen</p>
+          <h2>Speisekarte</h2>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <h3>Antipasti Teller</h3>
+            <p>Italienische Vorspeisen mit frischen Zutaten</p>
+          </div>
+          <div class="menu-item">
+            <h3>Hausgemachte Pizza</h3>
+            <p>Knusprig gebacken mit klassischen oder speziellen Toppings</p>
+          </div>
+          <div class="menu-item">
+            <h3>Cocktails</h3>
+            <p>Erfrischende Drinks für heiße Tage</p>
+          </div>
+          <div class="menu-item">
+            <h3>Champagner</h3>
+            <p>Für besondere Anlässe und Feiern</p>
+          </div>
+        </div>
+        <div class="menu-cta">
+          <a class="button" href="#">Komplette Speisekarte</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rezensionen Section -->
+    <section class="reviews" id="rezensionen">
+      <div class="container">
+        <div class="section-header">
+          <p class="kicker">Das sagen unsere Gäste</p>
+          <h2>Rezensionen</h2>
+        </div>
+        <div class="reviews-grid" id="reviews-container">
+          <!-- Rezensionen werden per JavaScript geladen -->
+        </div>
+        <div class="load-more-container">
+          <button class="button load-more" id="load-more">Mehr Bewertungen anzeigen</button>
+          <p id="reviews-count">Zeige <span id="shown-count">8</span> von <span id="total-count">100+</span> Rezensionen</p>
+        </div>
+        <div class="rating-overview">
+          <div class="overall-rating">
+            <span class="rating-number">4,7</span>
+            <div class="rating-stars">⭐⭐⭐⭐⭐</div>
+            <p>Basierend auf 698 Bewertungen</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Galerie Section -->
+    <section class="gallery" id="galerie">
+      <div class="container">
+        <div class="section-header">
+          <p class="kicker">Fotobeiträge</p>
+          <h2>Galerie</h2>
+        </div>
+        <div class="gallery-grid">
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=400&q=85" alt="Sonnenuntergang">
+            <span>Sonnenuntergang</span>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=400&q=85" alt="Pizza">
+            <span>Essen</span>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=400&q=85" alt="Cocktails">
+            <span>Cocktails</span>
+          </div>
+          <div class="gallery-item">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=400&q=85" alt="Seebrücke">
+            <span>Seebrücke</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reservierung Section -->
+    <section class="reservation" id="reservierung">
+      <div class="container">
+        <div class="section-header light">
+          <p class="kicker">Reservierung</p>
+          <h2>Ihren Tisch reservieren</h2>
+        </div>
+        <form class="reservation-form" id="reservation-form">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name *</label>
+              <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+              <label for="guests">Anzahl Gäste *</label>
+              <input type="number" id="guests" name="guests" min="1" max="50" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Datum *</label>
+              <input type="date" id="date" name="date" required>
+            </div>
+            <div class="form-group">
+              <label for="time">Uhrzeit *</label>
+              <input type="time" id="time" name="time" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="phone">Telefon</label>
+            <input type="tel" id="phone" name="phone">
+          </div>
+          <div class="form-group">
+            <label for="message">Nachricht</label>
+            <textarea id="message" name="message" rows="3"></textarea>
+          </div>
+          <button type="submit" class="button">Reservierung anfragen</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- Kontakt Section -->
+    <section class="contact" id="kontakt">
+      <div class="container">
+        <div class="section-header light">
+          <p class="kicker">Erreichen Sie uns</p>
+          <h2>Kontakt</h2>
+        </div>
+        <div class="contact-grid">
+          <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <h3>Adresse</h3>
+            <p>Weg zum Strandbad 1</p>
+            <p>14548 Schwielowsee-Caputh</p>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <h3>Telefon</h3>
+            <p><a href="tel:033209228030">033209 228030</a></p>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">📧</div>
+            <h3>E-Mail</h3>
+            <p><a href="mailto:info@seebad-caputh.de">info@seebad-caputh.de</a></p>
+          </div>
+        </div>
+        <div class="map-link">
+          <p>📌 <a href="https://maps.google.com/?q=8XVJ+W8+Schwielowsee" target="_blank">Auf Google Maps anzeigen</a></p>
+          <p>Google Plus Code: <strong>8XVJ+W8 Schwielowsee</strong></p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <a class="logo" href="#">Seebad<span>Caputh</span></a>
+        <div class="footer-links">
+          <a href="#">Startseite</a>
+          <a href="#speisekarte">Speisekarte</a>
+          <a href="#rezensionen">Rezensionen</a>
+          <a href="#galerie">Galerie</a>
+          <a href="#kontakt">Kontakt</a>
+          <a href="#">Datenschutz</a>
+          <a href="#">Impressum</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2024 Seebad Caputh. Alle Rechte vorbehalten.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login-JavaScript (funktioniert lokal mit file://) -->
+  <script>
+    // Benutzerdaten (Klartext-Passwörter für Tests)
+    const users = {
+      "admin": { password: "1234", name: "Administrator" },
+      "test":  { password: "test",  name: "Testuser" },
+      "noah":  { password: "caputh", name: "Noah" }
+    };
+
+    // Login-Funktion
+    function login() {
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const user = users[username];
+
+      if (user && user.password === password) {
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("user-name").textContent = user.name;
+        document.getElementById("protected-content").style.display = "block";
+        localStorage.setItem("loggedInUser", username);
+      } else {
+        alert("❌ Falscher Benutzername oder Passwort!\n\nTest-Benutzer:\n- admin / 1234\n- test / test\n- noah / caputh");
+      }
+    }
+
+    // Logout-Funktion
+    function logout() {
+      document.getElementById("login-container").style.display = "inline-block";
+      document.getElementById("protected-content").style.display = "none";
+      localStorage.removeItem("loggedInUser");
+      document.getElementById("login-form").reset();
+    }
+
+    // Automatischer Login-Check beim Laden
+    window.addEventListener('DOMContentLoaded', function() {
+      const savedUser = localStorage.getItem("loggedInUser");
+      if (savedUser && users[savedUser]) {
+        document.getElementById("login-container").style.display = "none";
+        document.getElementById("user-name").textContent = users[savedUser].name;
+        document.getElementById("protected-content").style.display = "block";
+      }
+    });
+  </script>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stoppuhr mit Rundenzeiten.">
+  <title>Stoppuhr | Schulprojekte</title>
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .watch {
+      max-width: 480px;
+      margin: 0 auto;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+    .watch-time {
+      font-family: 'Space Grotesk', monospace;
+      font-size: clamp(2.75rem, 12vw, 4rem);
+      color: var(--text-primary);
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-variant-numeric: tabular-nums;
+    }
+    .watch-buttons { display: flex; gap: 0.75rem; justify-content: center; margin-top: 1.5rem; }
+    .watch-buttons button {
+      padding: 0.75rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      border-radius: var(--radius);
+      border: 1px solid var(--border-light);
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .watch-buttons button:hover { border-color: var(--accent-primary); }
+    .watch-buttons #startStop { background: var(--gradient-1); border-color: transparent; }
+    .watch-buttons #startStop.running { background: var(--error); }
+    .laps { list-style: none; margin-top: 1.5rem; text-align: left; max-height: 260px; overflow-y: auto; }
+    .laps li {
+      display: flex; justify-content: space-between;
+      padding: 0.6rem 0.25rem;
+      border-bottom: 1px solid var(--border);
+      font-family: 'Space Grotesk', monospace;
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    .laps li span:first-child { color: var(--text-muted); }
+    .watch-hint { color: var(--text-muted); font-size: 0.8rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <main id="main-content" class="active">
+    <header>
+      <nav>
+        <div class="brand">⏱️ Stoppuhr</div>
+        <div class="nav-links"></div>
+        <div class="nav-user">
+          <a href="../index.html" class="btn">← Schulprojekte</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="view">
+      <h2>Stoppuhr</h2>
+      <p>Start/Stopp, Zurücksetzen und Rundenzeiten.</p>
+
+      <div class="watch">
+        <div class="watch-time" id="time">00:00.00</div>
+        <div class="watch-buttons">
+          <button id="startStop">Start</button>
+          <button id="lap">Runde</button>
+          <button id="reset">Zurücksetzen</button>
+        </div>
+        <ul class="laps" id="laps"></ul>
+        <p class="watch-hint">Tastatur: Leertaste (Start/Stopp) &middot; L (Runde) &middot; R (Zurücksetzen)</p>
+      </div>
+    </section>
+
+    <footer><p>&copy; 2026 &middot; Lokales Projekt-Dashboard</p></footer>
+  </main>
+
+  <script>
+    const timeEl = document.getElementById('time');
+    const startStopBtn = document.getElementById('startStop');
+    const lapBtn = document.getElementById('lap');
+    const resetBtn = document.getElementById('reset');
+    const lapsEl = document.getElementById('laps');
+
+    let startTime = 0;
+    let elapsed = 0;
+    let running = false;
+    let rafId = null;
+    let laps = [];
+
+    function fmt(ms) {
+      const cs = Math.floor(ms / 10) % 100;
+      const s = Math.floor(ms / 1000) % 60;
+      const m = Math.floor(ms / 60000);
+      const p = (n) => String(n).padStart(2, '0');
+      return `${p(m)}:${p(s)}.${p(cs)}`;
+    }
+
+    function total() {
+      return elapsed + (running ? performance.now() - startTime : 0);
+    }
+
+    function tick() {
+      timeEl.textContent = fmt(total());
+      rafId = requestAnimationFrame(tick);
+    }
+
+    function startStop() {
+      if (running) {
+        elapsed = total();
+        cancelAnimationFrame(rafId);
+        running = false;
+        startStopBtn.textContent = 'Weiter';
+        startStopBtn.classList.remove('running');
+      } else {
+        startTime = performance.now();
+        running = true;
+        startStopBtn.textContent = 'Stopp';
+        startStopBtn.classList.add('running');
+        tick();
+      }
+    }
+
+    function reset() {
+      cancelAnimationFrame(rafId);
+      running = false;
+      elapsed = 0;
+      laps = [];
+      timeEl.textContent = fmt(0);
+      startStopBtn.textContent = 'Start';
+      startStopBtn.classList.remove('running');
+      renderLaps();
+    }
+
+    function addLap() {
+      if (!running && elapsed === 0) return;
+      laps.push(total());
+      renderLaps();
+    }
+
+    function renderLaps() {
+      lapsEl.innerHTML = laps.map((t, i) => {
+        const split = i === 0 ? t : t - laps[i - 1];
+        return `<li><span>Runde ${i + 1}</span><span>+${fmt(split)}</span><span>${fmt(t)}</span></li>`;
+      }).reverse().join('');
+    }
+
+    startStopBtn.addEventListener('click', startStop);
+    lapBtn.addEventListener('click', addLap);
+    resetBtn.addEventListener('click', reset);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.code === 'Space') { e.preventDefault(); startStop(); }
+      else if (e.key === 'l' || e.key === 'L') addLap();
+      else if (e.key === 'r' || e.key === 'R') reset();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Einfacher Taschenrechner.">
+  <title>Taschenrechner | Schulprojekte</title>
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .calc {
+      max-width: 340px;
+      margin: 0 auto;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.25rem;
+    }
+    .calc-display {
+      background: var(--bg-primary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem;
+      text-align: right;
+      font-family: 'Space Grotesk', monospace;
+      font-size: 2rem;
+      color: var(--text-primary);
+      overflow: hidden;
+      word-break: break-all;
+      min-height: 3.75rem;
+      margin-bottom: 1rem;
+    }
+    .calc-keys {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0.6rem;
+    }
+    .calc-keys button {
+      padding: 1rem 0;
+      font-size: 1.15rem;
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius);
+      background: var(--bg-tertiary);
+      color: var(--text-primary);
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .calc-keys button:hover { border-color: var(--accent-primary); }
+    .calc-keys button:active { transform: translateY(1px); }
+    .calc-keys .op { color: var(--accent-primary); }
+    .calc-keys .fn { background: var(--bg-secondary); color: var(--text-secondary); }
+    .calc-keys .equals { background: var(--gradient-1); border-color: transparent; }
+    .calc-hint { text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <main id="main-content" class="active">
+    <header>
+      <nav>
+        <div class="brand">🧮 Taschenrechner</div>
+        <div class="nav-links"></div>
+        <div class="nav-user">
+          <a href="../index.html" class="btn">← Schulprojekte</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="view">
+      <h2>Taschenrechner</h2>
+      <p>Grundrechenarten. Bedienung per Maus oder Tastatur.</p>
+
+      <div class="calc">
+        <div class="calc-display" id="display">0</div>
+        <div class="calc-keys">
+          <button class="fn" data-action="clear">C</button>
+          <button class="fn" data-action="back">⌫</button>
+          <button class="fn" data-action="percent">%</button>
+          <button class="op" data-op="÷">÷</button>
+
+          <button data-digit="7">7</button>
+          <button data-digit="8">8</button>
+          <button data-digit="9">9</button>
+          <button class="op" data-op="×">×</button>
+
+          <button data-digit="4">4</button>
+          <button data-digit="5">5</button>
+          <button data-digit="6">6</button>
+          <button class="op" data-op="−">−</button>
+
+          <button data-digit="1">1</button>
+          <button data-digit="2">2</button>
+          <button data-digit="3">3</button>
+          <button class="op" data-op="+">+</button>
+
+          <button data-action="sign">±</button>
+          <button data-digit="0">0</button>
+          <button data-action="decimal">,</button>
+          <button class="equals" data-action="equals">=</button>
+        </div>
+        <p class="calc-hint">Tastatur: Zahlen, + − * / , Enter (=), Esc (C), Backspace</p>
+      </div>
+    </section>
+
+    <footer><p>&copy; 2026 &middot; Lokales Projekt-Dashboard</p></footer>
+  </main>
+
+  <script>
+    const displayEl = document.getElementById('display');
+    let current = '0';
+    let previous = null;
+    let operator = null;
+    let freshEntry = false; // nächste Ziffer beginnt eine neue Zahl
+
+    function show() { displayEl.textContent = current.replace('.', ','); }
+
+    function fmt(n) {
+      if (!isFinite(n)) return 'Fehler';
+      return String(Math.round((n + Number.EPSILON) * 1e10) / 1e10);
+    }
+
+    function compute(a, b, op) {
+      switch (op) {
+        case '+': return a + b;
+        case '−': return a - b;
+        case '×': return a * b;
+        case '÷': return b === 0 ? NaN : a / b;
+        default:  return b;
+      }
+    }
+
+    function inputDigit(d) {
+      if (current === 'Fehler') current = '0';
+      if (current === '0' || freshEntry) { current = d; freshEntry = false; }
+      else current += d;
+      show();
+    }
+
+    function inputDecimal() {
+      if (freshEntry) { current = '0'; freshEntry = false; }
+      if (!current.includes('.')) current += '.';
+      show();
+    }
+
+    function chooseOp(op) {
+      const value = parseFloat(current);
+      if (previous === null) {
+        previous = value;
+      } else if (operator && !freshEntry) {
+        previous = compute(previous, value, operator);
+        current = fmt(previous);
+        show();
+      }
+      operator = op;
+      freshEntry = true;
+    }
+
+    function equals() {
+      if (operator === null || previous === null) return;
+      current = fmt(compute(previous, parseFloat(current), operator));
+      previous = null;
+      operator = null;
+      freshEntry = true;
+      show();
+    }
+
+    function clearAll() { current = '0'; previous = null; operator = null; freshEntry = false; show(); }
+    function backspace() { current = current.length > 1 ? current.slice(0, -1) : '0'; show(); }
+    function toggleSign() { if (current !== '0' && current !== 'Fehler') current = current.startsWith('-') ? current.slice(1) : '-' + current; show(); }
+    function percent() { current = fmt(parseFloat(current) / 100); freshEntry = true; show(); }
+
+    document.querySelector('.calc-keys').addEventListener('click', (e) => {
+      const b = e.target.closest('button');
+      if (!b) return;
+      if (b.dataset.digit) inputDigit(b.dataset.digit);
+      else if (b.dataset.op) chooseOp(b.dataset.op);
+      else switch (b.dataset.action) {
+        case 'clear': clearAll(); break;
+        case 'back': backspace(); break;
+        case 'percent': percent(); break;
+        case 'sign': toggleSign(); break;
+        case 'decimal': inputDecimal(); break;
+        case 'equals': equals(); break;
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key >= '0' && e.key <= '9') inputDigit(e.key);
+      else if (e.key === '.' || e.key === ',') inputDecimal();
+      else if (e.key === '+') chooseOp('+');
+      else if (e.key === '-') chooseOp('−');
+      else if (e.key === '*') chooseOp('×');
+      else if (e.key === '/') { e.preventDefault(); chooseOp('÷'); }
+      else if (e.key === 'Enter' || e.key === '=') { e.preventDefault(); equals(); }
+      else if (e.key === 'Escape') clearAll();
+      else if (e.key === 'Backspace') backspace();
+      else if (e.key === '%') percent();
+    });
+
+    show();
+  </script>
+</body>
+</html>

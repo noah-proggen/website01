@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Präsentation: Der Wasserkreislauf.">
+  <title>Der Wasserkreislauf | Schulprojekte</title>
+  <link rel="stylesheet" href="../../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    .deck {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .slide {
+      background: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 3rem;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .slide.title-slide {
+      background: var(--gradient-1);
+      border-color: transparent;
+      text-align: center;
+    }
+    .slide.title-slide h1 { font-size: clamp(2rem, 6vw, 3.25rem); font-family: 'Space Grotesk', sans-serif; margin-bottom: 1rem; }
+    .slide.title-slide p { color: rgba(255, 255, 255, 0.9); font-size: 1.2rem; }
+    .slide .kicker { color: var(--accent-primary); font-weight: 600; text-transform: uppercase; letter-spacing: 2px; font-size: 0.8rem; margin-bottom: 0.75rem; }
+    .slide h2 { font-family: 'Space Grotesk', sans-serif; font-size: clamp(1.6rem, 4vw, 2.25rem); margin-bottom: 1.5rem; }
+    .slide ul { list-style: none; display: flex; flex-direction: column; gap: 1rem; }
+    .slide li { position: relative; padding-left: 1.75rem; color: var(--text-secondary); font-size: 1.1rem; line-height: 1.6; }
+    .slide li::before { content: '💧'; position: absolute; left: 0; }
+    .slide .big { font-size: 1.25rem; color: var(--text-secondary); line-height: 1.7; }
+
+    .deck-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 1.25rem;
+      gap: 1rem;
+    }
+    .deck-controls .counter { color: var(--text-muted); font-family: 'Space Grotesk', monospace; }
+    .deck-progress { height: 4px; background: var(--bg-tertiary); border-radius: var(--radius-full); overflow: hidden; margin-top: 0.75rem; }
+    .deck-progress span { display: block; height: 100%; background: var(--gradient-1); transition: width var(--transition); }
+    .deck-hint { text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 1rem; }
+  </style>
+</head>
+<body>
+  <main id="main-content" class="active">
+    <header>
+      <nav>
+        <div class="brand">📊 Präsentation</div>
+        <div class="nav-links"></div>
+        <div class="nav-user">
+          <a href="../index.html" class="btn">← Schulprojekte</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="view">
+      <h2>Der Wasserkreislauf</h2>
+      <p>Folien mit Pfeiltasten <strong>←</strong> / <strong>→</strong> oder den Buttons steuern. <strong>F</strong> = Vollbild.</p>
+
+      <div class="deck" id="deck">
+        <div class="slide" id="slide"></div>
+        <div class="deck-progress"><span id="progress"></span></div>
+        <div class="deck-controls">
+          <button class="btn" id="prev">← Zurück</button>
+          <span class="counter" id="counter"></span>
+          <button class="btn btn-primary" id="next">Weiter →</button>
+        </div>
+        <p class="deck-hint">Tastatur: ← / → blättern &middot; Pos1 / Ende &middot; F Vollbild</p>
+      </div>
+    </section>
+
+    <footer><p>&copy; 2026 &middot; Lokales Projekt-Dashboard</p></footer>
+  </main>
+
+  <script>
+    const slides = [
+      {
+        cls: 'title-slide',
+        html: `<h1>Der Wasserkreislauf</h1><p>Wie das Wasser die Erde umrundet &mdash; ein Schulreferat</p>`
+      },
+      {
+        html: `<p class="kicker">Überblick</p><h2>Worum geht es?</h2>
+          <ul>
+            <li>Wasser bewegt sich ununterbrochen zwischen Meer, Luft und Land.</li>
+            <li>Angetrieben wird alles von der <strong>Energie der Sonne</strong>.</li>
+            <li>Der Kreislauf hat keinen Anfang und kein Ende.</li>
+          </ul>`
+      },
+      {
+        html: `<p class="kicker">Schritt 1</p><h2>Verdunstung</h2>
+          <ul>
+            <li>Die Sonne erwärmt das Wasser in Meeren, Seen und Flüssen.</li>
+            <li>Wasser wird zu unsichtbarem Wasserdampf und steigt auf.</li>
+            <li>Auch Pflanzen geben Wasser an die Luft ab (Transpiration).</li>
+          </ul>`
+      },
+      {
+        html: `<p class="kicker">Schritt 2</p><h2>Kondensation</h2>
+          <ul>
+            <li>In der Höhe ist die Luft kälter.</li>
+            <li>Der Wasserdampf kühlt ab und wird zu winzigen Tröpfchen.</li>
+            <li>Viele Tröpfchen zusammen bilden <strong>Wolken</strong>.</li>
+          </ul>`
+      },
+      {
+        html: `<p class="kicker">Schritt 3</p><h2>Niederschlag</h2>
+          <ul>
+            <li>Die Tröpfchen schließen sich zu größeren Tropfen zusammen.</li>
+            <li>Sie werden zu schwer und fallen zu Boden.</li>
+            <li>Als <strong>Regen</strong>, <strong>Schnee</strong> oder <strong>Hagel</strong>.</li>
+          </ul>`
+      },
+      {
+        html: `<p class="kicker">Schritt 4</p><h2>Abfluss &amp; Versickerung</h2>
+          <ul>
+            <li>Ein Teil fließt über Bäche und Flüsse zurück ins Meer.</li>
+            <li>Ein Teil versickert im Boden und wird zu Grundwasser.</li>
+            <li>Dann beginnt der Kreislauf von vorn.</li>
+          </ul>`
+      },
+      {
+        html: `<p class="kicker">Zusammenfassung</p><h2>Der Kreislauf auf einen Blick</h2>
+          <p class="big">Verdunstung &rarr; Kondensation &rarr; Niederschlag &rarr; Abfluss &rarr; und wieder von vorn.<br><br>
+          Die <strong>Sonne</strong> ist der Motor. Der Wasserkreislauf sorgt für Wetter, Trinkwasser und alles Leben auf der Erde.</p>`
+      }
+    ];
+
+    const slideEl = document.getElementById('slide');
+    const counterEl = document.getElementById('counter');
+    const progressEl = document.getElementById('progress');
+    const prevBtn = document.getElementById('prev');
+    const nextBtn = document.getElementById('next');
+    let i = 0;
+
+    function render() {
+      const s = slides[i];
+      slideEl.className = 'slide' + (s.cls ? ' ' + s.cls : '');
+      slideEl.innerHTML = s.html;
+      counterEl.textContent = `${i + 1} / ${slides.length}`;
+      progressEl.style.width = ((i + 1) / slides.length * 100) + '%';
+      prevBtn.disabled = i === 0;
+      nextBtn.disabled = i === slides.length - 1;
+    }
+
+    function go(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      render();
+    }
+
+    prevBtn.addEventListener('click', () => go(i - 1));
+    nextBtn.addEventListener('click', () => go(i + 1));
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') go(i + 1);
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') go(i - 1);
+      else if (e.key === 'Home') go(0);
+      else if (e.key === 'End') go(slides.length - 1);
+      else if (e.key === 'f' || e.key === 'F') {
+        const d = document.getElementById('deck');
+        if (!document.fullscreenElement) d.requestFullscreen?.();
+        else document.exitFullscreen?.();
+      }
+    });
+
+    render();
+  </script>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Projektvorlage.">
+  <title>Neues Projekt | Projekt-Dashboard</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!--
+    Vorlage für ein neues Unterprojekt.
+    1. Diesen Ordner kopieren:  pages/_template  ->  pages/mein-projekt
+    2. Inhalt unten anpassen.
+    3. In ../../script.js im Array PROJECTS einen Eintrag ergänzen:
+       { id:'mein-projekt', title:'Mein Projekt', description:'...', icon:'📦',
+         path:'pages/mein-projekt/index.html', tags:['Tag'], roles:['admin'] }
+  -->
+  <main id="main-content" class="active">
+    <header>
+      <nav>
+        <div class="brand">📦 Neues Projekt</div>
+        <div class="nav-links"></div>
+        <div class="nav-user">
+          <a href="../../index.html" class="btn">← Zurück zum Dashboard</a>
+        </div>
+      </nav>
+    </header>
+
+    <section class="view">
+      <h2>Projekttitel</h2>
+      <p>Kurze Beschreibung des Projekts.</p>
+
+      <div class="panel">
+        <h3>Inhalt</h3>
+        <p>Hier kommt der Projektinhalt hin.</p>
+      </div>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 &middot; Lokales Projekt-Dashboard</p>
+    </footer>
+  </main>
+</body>
+</html>
